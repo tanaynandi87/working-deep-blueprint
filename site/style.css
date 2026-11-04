@@ -364,13 +364,17 @@ pre.out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);b
 .menu-btn:hover,.menu-btn[aria-expanded="true"]{background:var(--card2);border-color:var(--line2)}
 .brand-text i{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
 .tabs.menu-panel{position:absolute;top:calc(100% + 6px);left:max(16px,env(safe-area-inset-left,0px));width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 96px);overflow:auto;
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:4px 18px;padding:14px;flex:none;flex-wrap:nowrap;
+  display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:4px 18px;padding:14px;flex:none;flex-wrap:nowrap;
   background:color-mix(in srgb,var(--bg) 92%,var(--card));border:1px solid var(--line2);border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.28);
   -webkit-mask-image:none;mask-image:none;z-index:40}
 .tabs.menu-panel[hidden]{display:none}
 .mgroup{display:flex;flex-direction:column;gap:2px;align-content:start;min-width:0}
-.mgroup.big{grid-column:2;grid-row:1 / span 3;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px 6px}
+.mgroup.big{grid-column:1;grid-row:1 / span 3;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px 6px}
 .mgroup.big .mhead{grid-column:1 / -1}
+.mgroup:not(.big){grid-column:2}
+.mgroup.later{border-top:1px solid var(--line);margin-top:6px;padding-top:4px}
+.mlater{display:block;padding:6px 10px;font-size:13.5px;line-height:1.35;color:var(--muted)}
+.mlater b{display:block;font-weight:600;color:var(--ink2)}
 .mhead{font:700 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 10px 6px}
 .tabs.menu-panel a{display:flex;align-items:center;min-height:40px;padding:0 10px;border-radius:12px;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tabs.menu-panel a .num{margin-right:9px}
@@ -379,6 +383,6 @@ pre.out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);b
   .top.has-map .brand-text{display:flex} .brand-text b{font-size:16px}
   .menu-btn span{display:none} .menu-btn{width:var(--tap);padding:0;justify-content:center}
   .tabs.menu-panel{left:10px;right:10px;width:auto;grid-template-columns:minmax(0,1fr);padding:10px}
-  .mgroup.big{grid-column:auto;grid-row:auto}
+  .mgroup.big,.mgroup:not(.big){grid-column:auto;grid-row:auto}
 }
 @media print{ .menu-btn,.menu-panel{display:none!important} }
