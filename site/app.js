@@ -14,7 +14,7 @@ $("#t").textContent=B.meta.title;
 $("#sub").textContent=`The blueprint · ${B.meta.version} · ${B.meta.date}`;
 $("#foot").textContent=B.meta.basis;
 
-const tabs=[["plan","The plan"],["how","How it works"],["workflows","Workflows"],["pieces","The pieces"],["design","System design"],["moving","Moving in"],["tests","Tests"],["timeline","Timeline"],["scope","Scope & price"],["decisions","Your decisions"],["internal","For Tanay"]];
+const tabs=[["plan","The plan"],["how","How it works"],["workflows","Workflows"],["pieces","The pieces"],["design","System design"],["moving","Moving in"],["tests","Tests"],["timeline","Timeline"],["scope","Scope & price"],["internal","For Tanay"]];
 const secHtml=tabs.map(([id,l],i)=>`<a href="#${id}" data-t="${id}" class="${id==='internal'?'int':''}"><span class="num" aria-hidden="true">${i+1}</span>${l}</a>`).join("");
 /* Inside the brain map, sync-blueprint.js adds window.WD_MAP: the map's pages and brand, so both share one header.
    The header is one row (☰ menu, brand, ? and light/dark), and the blueprint's sections sit on a pinned row beneath it.
@@ -66,18 +66,17 @@ function recipients(f){const r=new Set();(function walk(st){st.forEach(s=>{if(s.
 
 /* ================================================================ COVER */
 S.cover=`<div class="letter">${B.cover.letter.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
-<div class="callout"><strong>The return test.</strong> ${esc(B.cover.returnTest)}</div>
 <div class="grid" style="margin-top:20px">
   <div class="card stat"><div class="n">${B.modules.length}</div><div class="l">pieces · ${B.modules.filter(m=>m.part==="A").length} before 1 Dec</div></div>
   <div class="card stat"><div class="n">${V.flows.length}</div><div class="l">workflows, each drawn step by step</div></div>
   <div class="card stat"><div class="n">5</div><div class="l">short check-ins with you</div></div>
-  <div class="card stat"><div class="n">${B.decisions.confirm.length+B.decisions.decide.length}</div><div class="l">answers I need from you</div></div>
-</div>
-<h3>What the marks mean</h3>${keyHtml}`;
+  <div class="card stat"><div class="n">${B.modules.filter(m=>m.status==="B").length}</div><div class="l">pieces waiting on a word from you</div></div>
+</div>`;
 
 /* ================================================================ PLAN */
 const op=B.onePage;
 S.plan=`<h2>The plan on one page</h2><p class="lead">${esc(op.headline)}</p>
+<details class="card letter-card" open><summary><strong>A note from me</strong> <span class="src">· the cover letter</span></summary>${S.cover}</details>
 <div class="mtrack">${op.milestones.map(m=>`<div class="mt ${m.id==="—"?"sell":""}"><div class="w">${esc(m.when)}</div><div class="n">${esc(m.name)}</div></div>`).join("")}</div>
 <div class="grid">${op.pillars.map(p=>`<div class="card"><div style="margin-bottom:6px">${chip(p.s)}</div><div style="font:500 18px var(--serif);margin-bottom:4px">${esc(p.t)}</div><div>${esc(p.d)}</div></div>`).join("")}</div>
 <h3>Each step, and its check-in with you</h3>
@@ -103,7 +102,7 @@ function systemMap(){
   L.push(`<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--line2)"/></marker></defs>`);
   L.push(`<text class="cap" x="20" y="186">How men come in</text><text class="cap" x="790" y="186">Runs your offerings</text><text class="cap" x="520" y="600" text-anchor="middle">Connected tools, staying as they are</text>`);
   L.push(box(400,10,240,56,"you","You (Speed)","Teach · sell · decide · talk"));
-  L.push(box(370,96,300,56,"asst","Your assistant","Answers · finds · acts · suggests",["mod","M14"]));
+  L.push(box(370,96,300,56,"asst","Your assistant","Answers · finds · acts · reminds",["mod","M14"]));
   L.push(arrow("M520,66 L520,94")); L.push(arrow("M520,152 L520,198"));
   L.push(`<rect class="core" x="300" y="200" width="440" height="270" rx="14"/><text class="h" x="520" y="232" text-anchor="middle">Working Deep CRM</text><text class="s" x="520" y="250" text-anchor="middle">GoHighLevel · one place that remembers every man</text>`);
   const pills=[["One record per man","M1"],["Holds & payments","M5"],["Forms & e-sign","M6"],["Bookings","M7"],["Emails & reminders","M8"],["Library (Feb)","M15"]];
@@ -174,6 +173,9 @@ const modHtml=m=>{const fl=flowsFor(m.id);return `<details class="mod" id="mod-$
 <summary><span class="mid">${m.id}</span><span class="mtitle">${esc(m.title)}</span>${chip(m.status)}<span class="part">Part ${m.part} · ${m.ms}</span></summary>
 <div class="mbody">${m.blockedBy?`<p class="blocked">Waiting on: ${esc(m.blockedBy)}</p>`:""}
 ${Q.map(([k,l])=>`<div class="q"><div class="k">${l}</div><div>${esc(m.plain[k])}</div></div>`).join("")}
+${m.abilities?`<h4 class="mh">What you can ask it, and what it does</h4><div class="scrollx">${table(["","You say","It does","",""],m.abilities.map(a=>[`<strong>${esc(a[0])}</strong>`,`<em>${esc(a[1])}</em>`,esc(a[2]),chip(a[3]),a[4]?`<span class="src">${esc(a[4])}</span>`:""]))}</div>`:""}
+${m.how?`<h4 class="mh">How it does it</h4>${table(["","",""],m.how.map(h=>[`<strong>${esc(h[0])}</strong>`,esc(h[1]),chip(h[2])]))}`:""}
+${m.later?`<h4 class="mh">Later, not in this build</h4><ul class="items">${m.later.map(l=>`<li><span>•</span><div><strong>${esc(l[0])}.</strong> ${esc(l[1])}</div></li>`).join("")}</ul>`:""}
 ${fl.length?`<div class="modflows">Workflows in this piece: ${fl.map(f=>`<span class="tag link" data-wf="${f.id}">${f.id} ${esc(f.name)}</span>`).join("")}</div>`:""}
 <details class="spec"><summary>Technical detail (for me, and whoever maintains this)</summary><div class="inner">${table(["Part","Specification",""],m.spec.map(r=>[`<strong>${esc(r[0])}</strong>`,esc(r[1]),chip(r[2])]))}</div></details>
 </div></details>`};
@@ -226,6 +228,7 @@ function gantt(){
 }
 S.timeline=`<h2>Timeline</h2><p class="lead">The build fitted around your November rest, December selling and the January cohort. Click a bar to open that piece.</p>
 <div class="card"><div class="scrollx">${gantt()}</div><div class="key" style="margin:12px 0 0"><span><span class="chip" style="background:var(--partA);color:var(--bg)">Part A</span></span><span><span class="chip" style="background:var(--partB);color:var(--bg)">Part B</span></span><span><span class="chip" style="background:var(--partS);color:var(--bg)">Blueprint</span></span><span style="color:var(--B)">│ today</span><span>┆ check-ins and key dates</span></div></div>
+<h3>What I need from you, and when</h3><div class="card">${table(["What","From","By","Piece"],B.inputs.map(i=>[esc(i.t),esc(i.from),esc(i.by),esc(i.mod)]))}</div>
 <h3>Dates in detail</h3>
 <div class="card">${B.timeline.map(e=>`<div class="q" style="grid-template-columns:130px 1fr"><div class="k" style="color:var(--accent)">${esc(e[0])}</div><div>${esc(e[1])} ${chip(e[3])}${e[2]?`<div class="src">${esc(e[2])}</div>`:""}</div></div>`).join("")}</div>`;
 
@@ -237,16 +240,6 @@ ${sc.since?`<div class="callout"><strong>New since 2 Nov.</strong> ${esc(sc.sinc
 <h3>Policies the build depends on</h3><div class="card">${table(["Policy","Owner","Where it's used",""],B.policies.map(p=>[`<strong>${esc(p[0])}</strong>`,esc(p[1]),esc(p[2]),chip(p[3])]))}</div>
 <h3>Price</h3><div class="card"><p style="margin-top:0">${esc(pr.note)}</p><p style="font:500 22px var(--serif)">${esc(pr.fixed)}</p>${table(["Running cost","Detail"],pr.system.map(r=>[`<strong>${esc(r[0])}</strong>`,esc(r[1])]))}</div>
 <h3>Risks I'm watching</h3><div class="card">${table(["Risk","What I'll do","Pieces"],B.risks.map(r=>r.map(esc)))}</div>`;
-
-/* ================================================================ DECISIONS */
-const dc=B.decisions, saved=store.get("wd-decisions")||{}, partAQ=dc.decide.filter(q=>q.partA);
-S.decisions=`<h2>Your decisions</h2><p class="lead">The one thing I need back. Tick or change each line. Your answers stay on this computer until you press Copy and send them to me, or just send me a voice note instead.</p>
-<div class="card" id="progress"></div>
-<h3>My answers of 22 October: yes, or change?</h3><div class="card">${dc.confirm.map(c=>`<div class="dec" data-id="${c.id}"><div class="t">${c.id}. ${esc(c.t)} <span class="src">· ${esc(c.affects)}</span></div><div class="opts"><label><input type="radio" name="${c.id}" value="Yes"> Yes</label><label><input type="radio" name="${c.id}" value="Change"> Change</label></div><textarea placeholder="If change, how?"></textarea></div>`).join("")}</div>
-<h3>Decisions only you can make</h3><div class="card">${dc.decide.map(q=>`<div class="dec" data-id="${q.id}"><div class="t">${q.id}. ${esc(q.t)} ${q.partA?'<span class="chip c-B">Needed for Part A</span>':'<span class="chip c-O">Part B</span>'}</div><div class="opts">${q.opts.map(o=>`<label><input type="checkbox" value="${esc(o)}"> ${esc(o)}</label>`).join("")}</div><textarea placeholder="Anything to add"></textarea><div class="src">Holds up: ${esc(q.blocks)}</div></div>`).join("")}</div>
-<h3>What I'll need, and when</h3><div class="card">${table(["What","From","By","Piece"],dc.inputs.map(i=>[esc(i.t),esc(i.from),esc(i.by),esc(i.mod)]))}</div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn primary" id="copy">Copy my answers</button><button class="btn" id="clear">Clear</button></div>
-<pre class="out" id="out" hidden></pre>`;
 
 /* ================================================================ INTERNAL */
 const maxH=Math.max(...B.modules.map(m=>m.hours)), tot=p=>B.modules.filter(m=>!p||m.part===p).reduce((a,m)=>a+m.hours,0);
@@ -266,25 +259,9 @@ $$(".dag g.n").forEach(g=>{
   g.addEventListener("mouseleave",()=>$$(".dag path").forEach(p=>p.classList.remove("hl")));
 });
 
-/* decisions */
-$$(".dec").forEach(el=>{const v=saved[el.dataset.id];if(!v)return;el.querySelectorAll("input").forEach(i=>{if((v.picks||[]).includes(i.value))i.checked=true});el.querySelector("textarea").value=v.note||""});
-const collect=()=>{const o={};$$(".dec").forEach(el=>{o[el.dataset.id]={picks:[...el.querySelectorAll("input:checked")].map(i=>i.value),note:el.querySelector("textarea").value}});return o};
-function progress(){
-  const o=collect(), all=[...dc.confirm,...dc.decide], done=all.filter(x=>o[x.id]&&(o[x.id].picks.length||o[x.id].note.trim())).length, a=partAQ.filter(x=>o[x.id]&&(o[x.id].picks.length||o[x.id].note.trim())).length;
-  $$(".dec").forEach(el=>{const v=o[el.dataset.id];el.classList.toggle("done",!!(v&&(v.picks.length||v.note.trim())))});
-  $("#progress").innerHTML=`<div class="prog-row"><span><strong>${done} of ${all.length}</strong> answered</span><span class="src">${all.length-done} to go</span></div><div class="progress"><div style="width:${done/all.length*100}%"></div></div>
-  <div class="prog-row" style="margin-top:14px"><span><strong>${a} of ${partAQ.length}</strong> Part A decisions</span><span class="src">${a===partAQ.length?"Part A can be finished":"these hold up building before 1 Dec"}</span></div><div class="progress"><div style="width:${a/partAQ.length*100}%;background:var(--B)"></div></div>`;
-}
-progress();
-document.addEventListener("input",e=>{if(e.target.closest(".dec")){store.set("wd-decisions",collect());progress()}});
-
 /* clicks */
 document.addEventListener("click",e=>{
   const t=e.target;
-  if(t.id==="copy"){const o=collect(),lines=[];[...dc.confirm,...dc.decide].forEach(x=>{const v=o[x.id];if(v&&(v.picks.length||v.note))lines.push(`${x.id}. ${x.t}\n   → ${v.picks.join(", ")||"none"}${v.note?"  ("+v.note+")":""}`)});
-    const txt="Speed's answers to the blueprint\n\n"+(lines.join("\n\n")||"(nothing ticked yet)");const out=$("#out");out.hidden=false;out.textContent=txt;
-    Promise.resolve().then(()=>navigator.clipboard.writeText(txt)).then(()=>{t.textContent="Copied";setTimeout(()=>t.textContent="Copy my answers",1500)}).catch(()=>{t.textContent="Select the text below to copy"});return}
-  if(t.id==="clear"){$$(".dec input").forEach(i=>i.checked=false);$$(".dec textarea").forEach(x=>x.value="");store.set("wd-decisions",{});$("#out").hidden=true;progress();return}
   const j=t.closest("[data-jump]");if(j){e.preventDefault();document.getElementById(j.dataset.jump).scrollIntoView({behavior:"smooth",block:"start"});return}
   const sel=t.closest("[data-sel]");if(sel){wfSel=sel.dataset.sel;renderWF();if(innerWidth<820)$("#wfdetail").scrollIntoView({behavior:"smooth"});return}
   const gb=t.closest("#wff button");if(gb){wfFilter=gb.dataset.g;$$("#wff button").forEach(b=>b.classList.toggle("on",b===gb));renderWFList();const first=V.flows.find(f=>wfFilter==="all"||f.group===wfFilter||(wfFilter==="A"&&f.part==="A"));if(first){wfSel=first.id;renderWF()}return}

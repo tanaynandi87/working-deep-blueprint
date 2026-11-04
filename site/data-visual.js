@@ -8,7 +8,7 @@ deps: {
   M0: [], M1: ["M0"], M7: ["M0"], M2: ["M1"], M3: ["M1"], M5: ["M0","M1"],
   M4: ["M1","M2","M3"], M6: ["M1","M5","M7"], M9a: ["M1","M5"],
   M8: ["M1","M2","M5"], M10: ["M1","M5","M7"], M11: ["M0","M7"], M12: ["M1"],
-  M9b: ["M1","M9a"], M13: ["M1","M12"], M14: ["M1","M2","M12"], M15: ["M8","M11","M12"]
+  M9b: ["M1","M9a"], M13: ["M1","M12"], M14: ["M1","M2","M3","M7","M12"], M15: ["M8","M11","M12"]
 },
 
 /* ---------- Workflows as flowcharts ---------- */
@@ -31,7 +31,7 @@ flows: [
   id: "WF-02", name: "Five men to call each Monday", piece: "M4", part: "A", group: "Selling",
   plain: "Every Monday morning you get five names with a reason each. Keep or swap; the system remembers.",
   steps: [
-    { t: "trigger", x: "Monday, 7:00 am ET" },
+    { t: "trigger", x: "Monday, 7:00 am ET (or any day you ask the assistant)" },
     { t: "action", x: "Looks for men in this order: introduced but not called · talk-again date has come · former regulars quiet for 90 days · alumni not in the coming cohort" },
     { t: "action", x: "Leaves out: anyone you've marked Do not suggest, men enrolled now, unsubscribed, the team" },
     { t: "email", to: "You", x: "\"Your five this week\", each with one line on why, and Keep / Swap buttons" },
@@ -123,7 +123,7 @@ flows: [
   plain: "A week's notice and the membership offer, then access ends, except for those who keep it.",
   steps: [
     { t: "trigger", x: "7 days before a man's comp ends (the Saturday after his cohort's last call)" },
-    { t: "email", to: "The man", x: "\"This Saturday is your last free 108 Minutes\" + the membership offer (your Q8)" },
+    { t: "email", to: "The man", x: "\"This Saturday is your last free 108 Minutes\" + the membership offer you choose" },
     { t: "wait", x: "Until that Saturday" },
     { t: "decision", x: "Is he a paying member, a 1:1 client, or next cohort's assistant?", branches: [
       { label: "Yes", steps: [ { t: "end", x: "Keeps access" } ] },
@@ -163,11 +163,11 @@ flows: [
 },
 {
   id: "WF-13", name: "First-timers", piece: "M8", part: "B", group: "108 Minutes",
-  plain: "You hear about every new man who came. Men who registered but didn't come are told their spot is held.",
+  plain: "Every first-timer hears back on his own: one note if he came, another if he didn't (your ask, 2 Nov). You also get the list of who came.",
   steps: [
     { t: "trigger", x: "Saturday, 2:00 pm ET" },
     { t: "decision", x: "Did this week's first-timer come?", branches: [
-      { label: "Came", steps: [ { t: "email", to: "You", x: "\"Today's new men\" with a two-line note you can send" } ] },
+      { label: "Came", steps: [ { t: "email", to: "The man", x: "\"Good to have you\" note, with how to come back" }, { t: "email", to: "You", x: "\"Today's new men\", in case you want to add a personal note" } ] },
       { label: "Didn't come", steps: [ { t: "wait", x: "Until Thursday" }, { t: "email", to: "The man", x: "\"We're holding your spot\"" } ] }
     ]}
   ]
@@ -205,10 +205,11 @@ flows: [
 },
 {
   id: "WF-16", name: "He registers for a retreat", piece: "M9a / M9b", part: "B", group: "Retreats",
-  plain: "Everything he needs, gathered without chasing. Late flights caught early.",
+  plain: "Everything he needs from the moment he registers, gathered without chasing. Late flights caught early.",
   steps: [
-    { t: "trigger", x: "He pays for the retreat" },
+    { t: "trigger", x: "He registers for the retreat (the welcome goes out straight away, your decision on 2 Nov)" },
     { t: "email", to: "The man", x: "Welcome · intake form · waiver · info sheet · how to join the Signal group" },
+    { t: "action", x: "His intake answers, or the airline confirmation he forwards, put his arrival time on his record" },
     { t: "decision", x: "Does his flight land after the start?", branches: [
       { label: "Yes", steps: [ { t: "email", to: "Ryan", x: "Straight away, so Ryan can ask him to change it" } ] },
       { label: "No",  steps: [ { t: "end", x: "Nothing" } ] }
@@ -245,13 +246,13 @@ flows: [
 },
 {
   id: "WF-19", name: "A testimonial is saved", piece: "M12", part: "B", group: "Testimonials",
-  plain: "Every testimonial is linked to the man, with permission asked where it's missing.",
+  plain: "Every testimonial is linked to the man. Where you don't have his permission yet, you're reminded to ask him yourself a few weeks later.",
   steps: [
-    { t: "trigger", x: "A testimonial is saved (phone button, Ryan's recording, or forwarded)" },
-    { t: "action", x: "Linked to the man, tagged by offering and theme" },
+    { t: "trigger", x: "A testimonial is saved (the assistant, the phone button, Ryan's recording, or forwarded)" },
+    { t: "action", x: "Linked to the man, tagged by offering and theme, with a note of where it came from" },
     { t: "decision", x: "Is his permission recorded?", branches: [
       { label: "Yes", steps: [ { t: "end", x: "Ready to use" } ] },
-      { label: "No",  steps: [ { t: "email", to: "The man", x: "A one-question permission request" } ] }
+      { label: "No",  steps: [ { t: "wait", x: "Three to four weeks, so asking lands easily" }, { t: "email", to: "You", x: "\"Ask Matt if you can use what he said\"" }, { t: "end", x: "You tell the assistant his answer; it goes on the record" } ] }
     ]}
   ]
 }
@@ -284,7 +285,7 @@ week: [
 
 /* ---------- Gantt ---------- */
 gantt: {
-  start: "2026-11-02", end: "2027-02-28", today: "2026-11-02",
+  start: "2026-11-02", end: "2027-02-28", today: "2026-11-04",
   bands: [
     { label: "You rest; soft pre-selling", from: "2026-11-02", to: "2026-11-30", kind: "speed" },
     { label: "Winter selling (test month)", from: "2026-12-01", to: "2027-01-14", kind: "sell" },
@@ -292,7 +293,7 @@ gantt: {
   ],
   rows: [
     { id: "BP", label: "Blueprint · mark-up · return test", from: "2026-11-02", to: "2026-11-12", part: "S" },
-    { id: "M0", from: "2026-11-10", to: "2026-11-14", part: "A" },
+    { id: "M0", from: "2026-11-09", to: "2026-11-14", part: "A" },
     { id: "M1", from: "2026-11-12", to: "2026-11-17", part: "A" },
     { id: "M2", from: "2026-11-13", to: "2026-11-20", part: "A" },
     { id: "M7", from: "2026-11-18", to: "2026-11-21", part: "A" },

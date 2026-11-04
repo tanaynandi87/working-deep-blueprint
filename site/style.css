@@ -313,14 +313,15 @@ details.spec .inner{padding:0 12px 10px}
 .mt.sell:after{background:var(--D);border-color:var(--D)}
 .mt .w{font:600 12px var(--sans);color:var(--accent)} .mt .n{font:500 15px/1.25 var(--serif)}
 
-/* decisions */
-.dec{padding:14px 0;border-bottom:1px solid var(--line)} .dec:last-child{border-bottom:0}
-.dec .t{font-weight:500;margin-bottom:8px}
-.dec.done .t:before{content:"✓ ";color:var(--D);font-weight:700}
-.opts{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px}
-.opts label{display:flex;gap:6px;align-items:center;cursor:pointer}
-.dec textarea{width:100%;margin-top:8px;font:14px var(--sans);padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);min-height:38px}
-pre.out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:13px;max-height:320px;overflow:auto}
+/* the cover letter on the plan page, and the assistant's extra tables */
+.letter-card{margin:6px 0 22px}
+.letter-card>summary{cursor:pointer;list-style:none;font-size:15px}
+.letter-card>summary::-webkit-details-marker{display:none}
+.letter-card>summary::before{content:"▸ ";color:var(--muted)}
+.letter-card[open]>summary::before{content:"▾ "}
+.letter-card .letter{margin-top:12px;max-width:70ch}
+.mh{font:600 12px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
+.mbody td em{font-style:normal;color:var(--ink2)}
 
 /* migration fan */
 .fan{display:grid;grid-template-columns:1fr 70px 230px;gap:0;align-items:center}
