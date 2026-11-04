@@ -763,25 +763,13 @@ scope: {
     "Embodiment Lab beyond a tag (a mirror of Lisa's sales page on your domain is outside this build).",
     "Running paid ads. You asked me to have a say in the Meta ads, which I will, alongside Leona.",
     "Going back through two years of text messages. The assistant only sees messages you pass to it.",
-    "Stage 4, training and handover, is priced separately ($500, below). Ongoing refinement after handover isn't included."
+    "Stage 4, training and handover, is priced separately. Ongoing refinement after handover isn't included."
   ],
   since: "New since our call on 2 Nov, and included in the Stage 3 price: the scholarship fund with a donate button on the website (you want it in the build), keeping your two Google calendars in step, and curating your library with AI (your \"stage five\", which you want me to own). I'll tell you which fit inside the price before I build them.",
   change: "If something comes up that isn't in this blueprint, I write it down, tell you whether it fits inside the price, and you decide before I build it. Nothing grows quietly (your ask, 28 Sep)."
 },
 
 price: {
-  note: "A fixed price for each stage. Nothing grows quietly: anything new goes through the change rule above before I build it.",
-  stages: [
-    ["Stage 2 · Blueprint", "This blueprint and its revisions", "$400"],
-    ["Stage 3 · Build", "Everything in the 17 pieces, including what you added on 2 Nov (the scholarship fund and donate button, keeping your two calendars in step, and curating your library), tested and written up. Includes GoHighLevel for the first year", "$4,000"],
-    ["Stage 4 · Training and handover", "You and the team trained on the system, and handover notes good enough for anyone to look after it", "$500"]
-  ],
-  total: "$4,900",
-  payments: [
-    ["Now", "Half of Stages 2 and 3 together, as you asked on 2 Nov", "$2,200"],
-    ["When Part B is live (≈15 Jan)", "The other half of Stages 2 and 3", "$2,200"],
-    ["At the end of Stage 4", "Training and handover", "$500"]
-  ],
   system: [
     ["GoHighLevel", "$150 a year. The first year is paid by me and included in the Stage 3 price; you pay it from the second year (from Nov 2027)"],
     ["Stripe", "≈2.9% + 30¢ per card payment in the US, absorbed by you (check current rates)"],
