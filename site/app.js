@@ -4,7 +4,7 @@ const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",
 const chip=s=>B.statusKey[s]?`<span class="chip c-${s}" title="${esc(B.statusKey[s][1])}">${esc(B.statusKey[s][0])}</span>`:"";
 const M=Object.fromEntries(B.modules.map(m=>[m.id,m]));
 const F=Object.fromEntries(V.flows.map(f=>[f.id,f]));
-const SHORT={M0:"Account & access",M1:"One record per man",M2:"Moving in",M3:"Saving introductions",M4:"Monday call list",M5:"Holds, terms, payments",M6:"108 Days enrolment",M7:"Bookings",M9a:"Montana pre-sale",M8:"108 Minutes weekly",M9b:"Retreat intake",M10:"1:1 admin",M11:"Website",M12:"Testimonials",M13:"Thursday email",M14:"Your assistant",M15:"Library"};
+const SHORT={M0:"Account & access",M1:"One record per man",M2:"Moving in",M3:"Saving introductions",M4:"Monday call list",M5:"Holds, terms, payments",M6:"108 Days enrollment",M7:"Bookings",M9a:"Montana pre-sale",M8:"108 Minutes weekly",M9b:"Retreat intake",M10:"1:1 admin",M11:"Website",M12:"Testimonials",M13:"Thursday email",M14:"Your assistant",M15:"Library"};
 const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const table=(head,rows,mono=[])=>`<div class="tablewrap"><table><thead><tr>${head.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td class="${mono.includes(i)?'mono':''}">${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 const aud=to=>to==="You"?"you":(to==="Ryan"||to==="Robert")?"team":"men";
@@ -165,9 +165,9 @@ S.pieces=`<h2>The pieces</h2><p class="lead">Seventeen pieces, built in this ord
 /* ================================================================ DESIGN */
 const d=B.design;
 S.design=`<h2>System design</h2><p class="lead">${esc(d.intro)}</p>
-<div class="subnav">${["Fields","Enrolment fields","Pipelines","Tags","Products","Calendars","Forms","Emails","Who sees what","Connections"].map((x,i)=>`<a href="#design" data-jump="d${i}">${x}</a>`).join("")}<a href="#workflows">Workflows ↗</a></div>
+<div class="subnav">${["Fields","Enrollment fields","Pipelines","Tags","Products","Calendars","Forms","Emails","Who sees what","Connections"].map((x,i)=>`<a href="#design" data-jump="d${i}">${x}</a>`).join("")}<a href="#workflows">Workflows ↗</a></div>
 <h3 id="d0">Fields on every man's record</h3><div class="card">${table(["Group","Field","Key","Type","Options / notes","","Source"],d.fields.map(f=>[esc(f[0]),`<strong>${esc(f[1])}</strong>`,esc(f[2]),esc(f[3]),esc(f[4]),chip(f[5]),`<span class="src">${esc(f[6])}</span>`]),[2])}</div>
-<h3 id="d1">Fields on each enrolment</h3><div class="card">${table(["Field","Type","Notes"],d.enrolmentFields.map(f=>[`<strong>${esc(f[0])}</strong>`,esc(f[1]),esc(f[2])]))}</div>
+<h3 id="d1">Fields on each enrollment</h3><div class="card">${table(["Field","Type","Notes"],d.enrolmentFields.map(f=>[`<strong>${esc(f[0])}</strong>`,esc(f[1]),esc(f[2])]))}</div>
 <h3 id="d2">Pipelines</h3><div class="card">${d.pipelines.map(pipeHtml).join("")}</div>
 <h3 id="d3">Tags</h3><div class="card">${table(["Tag","Meaning","Set by"],d.tags.map(t=>[esc(t[0]),esc(t[1]),esc(t[2])]),[0])}</div>
 <h3 id="d4">Products and prices</h3><div class="card">${table(["Product","Price",""],d.products.map(p=>[`<strong>${esc(p[0])}</strong>`,esc(p[1]),chip(p[2])]))}</div>
@@ -212,8 +212,8 @@ S.timeline=`<h2>Timeline</h2><p class="lead">The build fitted around your Novemb
 /* ================================================================ SCOPE & PRICE */
 const sc=B.scope,pr=B.price;
 S.scope=`<h2>Scope and price</h2><p class="lead">${esc(sc.inScope)}</p>
-<h3>Not included</h3><div class="card"><ul class="items">${sc.out.map(o=>`<li><span>—</span><div>${esc(o)}</div></li>`).join("")}</ul></div>
-<div class="callout"><strong>If something new comes up.</strong> ${esc(sc.change)}</div>
+<h3>Not included</h3><div class="card"><ul class="items">${sc.out.map(o=>`<li><span>•</span><div>${esc(o)}</div></li>`).join("")}</ul></div>
+${sc.since?`<div class="callout"><strong>New since 2 Nov.</strong> ${esc(sc.since)}</div>`:""}<div class="callout"><strong>If something new comes up.</strong> ${esc(sc.change)}</div>
 <h3>Policies the build depends on</h3><div class="card">${table(["Policy","Owner","Where it's used",""],B.policies.map(p=>[`<strong>${esc(p[0])}</strong>`,esc(p[1]),esc(p[2]),chip(p[3])]))}</div>
 <h3>Price</h3><div class="card"><p style="margin-top:0">${esc(pr.note)}</p><p style="font:500 22px var(--serif)">${esc(pr.fixed)}</p>${table(["Running cost","Detail"],pr.system.map(r=>[`<strong>${esc(r[0])}</strong>`,esc(r[1])]))}</div>
 <h3>Risks I'm watching</h3><div class="card">${table(["Risk","What I'll do","Pieces"],B.risks.map(r=>r.map(esc)))}</div>`;
@@ -261,7 +261,7 @@ document.addEventListener("input",e=>{if(e.target.closest(".dec")){store.set("wd
 /* clicks */
 document.addEventListener("click",e=>{
   const t=e.target;
-  if(t.id==="copy"){const o=collect(),lines=[];[...dc.confirm,...dc.decide].forEach(x=>{const v=o[x.id];if(v&&(v.picks.length||v.note))lines.push(`${x.id}. ${x.t}\n   → ${v.picks.join(", ")||"—"}${v.note?"  ("+v.note+")":""}`)});
+  if(t.id==="copy"){const o=collect(),lines=[];[...dc.confirm,...dc.decide].forEach(x=>{const v=o[x.id];if(v&&(v.picks.length||v.note))lines.push(`${x.id}. ${x.t}\n   → ${v.picks.join(", ")||"none"}${v.note?"  ("+v.note+")":""}`)});
     const txt="Speed's answers to the blueprint\n\n"+(lines.join("\n\n")||"(nothing ticked yet)");const out=$("#out");out.hidden=false;out.textContent=txt;
     Promise.resolve().then(()=>navigator.clipboard.writeText(txt)).then(()=>{t.textContent="Copied";setTimeout(()=>t.textContent="Copy my answers",1500)}).catch(()=>{t.textContent="Select the text below to copy"});return}
   if(t.id==="clear"){$$(".dec input").forEach(i=>i.checked=false);$$(".dec textarea").forEach(x=>x.value="");store.set("wd-decisions",{});$("#out").hidden=true;progress();return}
@@ -285,6 +285,6 @@ function show(){
 }
 window.addEventListener("hashchange",show);show();
 
-const root=document.documentElement,th=store.get("wd-theme");if(th)root.dataset.theme=th;
-$("#theme").addEventListener("click",()=>{const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;root.dataset.theme=dark?"light":"dark";store.set("wd-theme",root.dataset.theme)});
+const root=document.documentElement;let th=null;try{th=localStorage.getItem("wd-theme")}catch(e){}if(th==="light"||th==="dark")root.dataset.theme=th;
+$("#theme").addEventListener("click",()=>{const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;root.dataset.theme=dark?"light":"dark";try{localStorage.setItem("wd-theme",root.dataset.theme)}catch(e){}});
 })();

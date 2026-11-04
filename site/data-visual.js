@@ -50,13 +50,13 @@ flows: [
     { t: "trigger", x: "You tell the system (or Ryan) you're holding a place for Dan" },
     { t: "wait", x: "3 days" },
     { t: "decision", x: "Has Dan paid his deposit?", branches: [
-      { label: "Yes", steps: [ { t: "end", x: "Enrolment starts (WF-04)" } ] },
+      { label: "Yes", steps: [ { t: "end", x: "Enrollment starts (WF-04)" } ] },
       { label: "No",  steps: [ { t: "email", to: "You", x: "\"Hold for Dan ends today: keep, release or extend.\" Nothing goes to Dan" } ] }
     ]}
   ]
 },
 {
-  id: "WF-04", name: "He enrols in 108 Days", piece: "M6", part: "A", group: "Enrolment",
+  id: "WF-04", name: "He enrolls in 108 Days", piece: "M6", part: "A", group: "Enrollment",
   plain: "The moment his deposit lands, he's welcomed with everything he needs. You do nothing.",
   steps: [
     { t: "trigger", x: "His deposit is paid by card, or Ryan or I record a Venmo / Zelle payment" },
@@ -71,7 +71,7 @@ flows: [
   ]
 },
 {
-  id: "WF-05", name: "Waiver chase", piece: "M6", part: "A", group: "Enrolment",
+  id: "WF-05", name: "Waiver chase", piece: "M6", part: "A", group: "Enrollment",
   plain: "One gentle reminder to him, then Ryan sees who's missing a week out.",
   steps: [
     { t: "trigger", x: "Welcome sent" },
@@ -101,7 +101,7 @@ flows: [
   ]
 },
 {
-  id: "WF-07", name: "A cohort is cancelled", piece: "M6", part: "A", group: "Enrolment",
+  id: "WF-07", name: "A cohort is cancelled", piece: "M6", part: "A", group: "Enrollment",
   plain: "Rare. One honest note to everyone enrolled; refunds stay your decision.",
   steps: [
     { t: "trigger", x: "You decide a cohort won't run" },
@@ -110,7 +110,7 @@ flows: [
   ]
 },
 {
-  id: "WF-22", name: "Ryan's Monday note", piece: "M6", part: "A", group: "Enrolment",
+  id: "WF-22", name: "Ryan's Monday note", piece: "M6", part: "A", group: "Enrollment",
   plain: "Before your Monday 1 pm call, Ryan gets one list of everything outstanding.",
   steps: [
     { t: "trigger", x: "Monday, 9:00 am ET" },
