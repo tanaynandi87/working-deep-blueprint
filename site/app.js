@@ -21,16 +21,15 @@ const secHtml=tabs.map(([id,l],i)=>`<a href="#${id}" data-t="${id}" class="${id=
    On its own, the blueprint keeps its sections in the header row. */
 const MAP=window.WD_MAP;
 if(MAP){
-  const groups=[];
-  MAP.routes.forEach((r,i)=>{if(r.group||!groups.length)groups.push({h:r.group||"",items:[]});groups[groups.length-1].items.push([r,i]);});
   const menu=$("#mapmenu"),mb=$("#menuBtn");
-  menu.innerHTML=groups.map(g=>`<div class="mgroup${g.items.length>4?" big":""}"><span class="mhead">${esc(g.h)}</span>${g.items.map(([r,i])=>`<a href="${esc(r.href)}" class="${r.here?"on":""}"${r.here?' aria-current="page"':""}><span class="num" aria-hidden="true">${i+1}</span>${r.color?`<span class="dot" style="background:var(--${r.color})"></span>`:""}${esc(r.l)}</a>`).join("")}</div>`).join("")+(MAP.later||"");
+  menu.innerHTML=MAP.groups.map(g=>`<div class="mgroup${g.items.length>4?" big":""}"><span class="mhead">${esc(g.h)}</span>${g.items.map(x=>`<a href="${esc(x.href)}"${x.sec?` data-t="${esc(x.sec)}"`:""}>${x.n?`<span class="num" aria-hidden="true">${x.n}</span>`:""}${x.color?`<span class="dot" style="background:var(--${x.color})"></span>`:""}${esc(x.l)}</a>`).join("")}</div>`).join("")+(MAP.later||"");
+  menu.addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false);});
   const setMenu=open=>{menu.hidden=!open;mb.setAttribute("aria-expanded",String(open));if(open){const a=menu.querySelector("a.on")||menu.querySelector("a");if(a)a.focus({preventScroll:true});}};
   mb.hidden=false;mb.addEventListener("click",e=>{e.stopPropagation();setMenu(menu.hidden);});
   document.addEventListener("click",e=>{if(!menu.hidden&&!menu.contains(e.target))setMenu(false);});
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!menu.hidden){setMenu(false);mb.focus();}});
   const br=$("#brand");br.href=MAP.home;br.setAttribute("aria-label","Working Deep home");br.removeAttribute("title");
-  br.querySelector(".brand-text").innerHTML=`<b>${esc(MAP.brand[0])}</b><i>${esc(((groups.find(g=>g.items.some(([r])=>r.here))||{h:""}).h.split(" · ")[0]+" · ").replace(/^ · /,""))}The blueprint</i>`;
+  br.querySelector(".brand-text").innerHTML=`<b>${esc(MAP.brand[0])}</b><i id="here">Stage 2 · The blueprint</i>`;
   $("#nav").hidden=true;$("#sections").innerHTML=secHtml;$("#sections").hidden=false;$("#help").hidden=false;
   document.querySelector(".top").classList.add("has-map");
 }else $("#nav").innerHTML=secHtml;
@@ -301,8 +300,10 @@ function openMod(id){location.hash="pieces";setTimeout(()=>{const el=document.ge
 function show(){
   const id=(location.hash||"#plan").slice(1),k=tabs.some(t=>t[0]===id)?id:"plan";
   $$("section").forEach(s=>s.classList.toggle("on",s.id==="s-"+k));
-  $$("nav a[data-t]").forEach(a=>a.classList.toggle("on",a.dataset.t===k));
+  $$("#nav a[data-t],#sections a[data-t]").forEach(a=>a.classList.toggle("on",a.dataset.t===k));
   centerOn();
+  const here=$("#here"),t=tabs.find(x=>x[0]===k);if(MAP&&here&&t)here.textContent="Stage 2 · "+t[1];
+  $$("#mapmenu a[data-t]").forEach(a=>{const on=a.dataset.t===k;a.classList.toggle("on",on);if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
   window.scrollTo(0,0);
 }
 /* Like the map: on narrow screens, scroll each tab row so the current tab is in view. */
