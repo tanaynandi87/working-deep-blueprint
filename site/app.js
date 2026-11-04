@@ -65,19 +65,9 @@ function flowHtml(steps){ return `<div class="flow">${steps.map((s,i)=>(i?'<div 
 const legend=`<div class="legend">${[["trigger","What starts it"],["action","The system does it"],["decision","A check, with branches"],["wait","A wait"],["email","Email to men"],["email to-you","Email to you"],["email to-team","Email to Ryan / Robert"],["person to-team","A person does it"]].map(([c,l])=>`<span class="sw"><span class="node n-${c.split(" ")[0]} ${c.split(" ")[1]||""}" style="padding:2px 6px;border-left-width:4px"><span class="ic" style="flex:0 0 16px;height:16px;font-size:9px">${ICON[c.split(" ")[0]]}</span></span>${l}</span>`).join("")}</div>`;
 function recipients(f){const r=new Set();(function walk(st){st.forEach(s=>{if(s.t==="email")r.add(s.to);if(s.branches)s.branches.forEach(b=>walk(b.steps))})})(f.steps);return [...r]}
 
-/* ================================================================ COVER */
-S.cover=`<div class="letter">${B.cover.letter.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
-<div class="grid" style="margin-top:20px">
-  <div class="card stat"><div class="n">${B.modules.length}</div><div class="l">pieces · ${B.modules.filter(m=>m.part==="A").length} before 1 Dec</div></div>
-  <div class="card stat"><div class="n">${V.flows.length}</div><div class="l">workflows, each drawn step by step</div></div>
-  <div class="card stat"><div class="n">5</div><div class="l">short check-ins with you</div></div>
-  <div class="card stat"><div class="n">${B.modules.filter(m=>m.status==="B").length}</div><div class="l">pieces waiting on a word from you</div></div>
-</div>`;
-
 /* ================================================================ PLAN */
 const op=B.onePage;
 S.plan=`<h2>The plan on one page</h2><p class="lead">${esc(op.headline)}</p>
-<details class="card letter-card" open><summary><strong>A note from me</strong> <span class="src">· the cover letter</span></summary>${S.cover}</details>
 <div class="mtrack">${op.milestones.map(m=>`<div class="mt ${m.id==="—"?"sell":""}"><div class="w">${esc(m.when)}</div><div class="n">${esc(m.name)}</div></div>`).join("")}</div>
 <div class="grid">${op.pillars.map(p=>`<div class="card"><div style="margin-bottom:6px">${chip(p.s)}</div><div style="font:500 18px var(--serif);margin-bottom:4px">${esc(p.t)}</div><div>${esc(p.d)}</div></div>`).join("")}</div>
 <h3>Each step, and its check-in with you</h3>

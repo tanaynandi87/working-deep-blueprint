@@ -313,13 +313,7 @@ details.spec .inner{padding:0 12px 10px}
 .mt.sell:after{background:var(--D);border-color:var(--D)}
 .mt .w{font:600 12px var(--sans);color:var(--accent)} .mt .n{font:500 15px/1.25 var(--serif)}
 
-/* the cover letter on the plan page, and the assistant's extra tables */
-.letter-card{margin:6px 0 22px}
-.letter-card>summary{cursor:pointer;list-style:none;font-size:15px}
-.letter-card>summary::-webkit-details-marker{display:none}
-.letter-card>summary::before{content:"▸ ";color:var(--muted)}
-.letter-card[open]>summary::before{content:"▾ "}
-.letter-card .letter{margin-top:12px;max-width:70ch}
+/* the assistant's extra tables */
 .mh{font:600 12px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
 .mbody td em{font-style:normal;color:var(--ink2)}
 

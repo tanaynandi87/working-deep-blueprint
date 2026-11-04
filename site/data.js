@@ -30,16 +30,6 @@ statusKey: {
 
 /* --------------------------------------------------------------- COVER */
 cover: {
-  letter: [
-    "Speed,",
-    "This is the blueprint: the written plan for the build. Stage 1 described how Working Deep runs today. This says what I'll build, in what order, what changes for you, what I need from you and when, how we'll know each piece works, and what isn't included.",
-    "Are we on target? Yes. The spec is the one you hired me for: one place that remembers every man, automations that take the admin off you and Ryan, and an assistant you talk to instead of opening a CRM. On 2 Nov you added three things: a scholarship fund with a donate button, keeping your two calendars in step, and curating your library. They're marked \"not yet priced\" so nothing grows quietly.",
-    "How it runs. It's in two parts. Part A is everything you need to sell the winter 108 Days on the new system from about 1 December. Part B is everything else for the winter cohort's start around 15 January, then the library in February. You chose on 2 Nov to take the blueprint and the build as one piece of work, with half paid up front, so the build starts on 9 Nov, after Diwali, while you read Part B.",
-    "Every point is marked. \"Decided\" means you've said it. \"Yours to confirm\" means I answered it on 22 October and it needs your yes. \"My proposal\" is a design choice of mine you can change. \"Waiting on you\" says, in the piece itself, exactly what I need you to tell me. Nothing is approved until you say so, and a voice note is always fine.",
-    "How to read it. Start with this page. Then open the pieces that matter most to you; each answers the same seven questions in plain words, with the technical detail behind a button you can ignore. Your assistant (M14) has the most detail, because it's the part you'll live with every day.",
-    "Since our call on 2 Nov I've gone through every piece against what you said. Where you answered something it's now marked Decided and dated 2 Nov.",
-    "Tanay"
-  ],
   returnTest: "Once you've approved a part, put it aside for 48 to 72 hours. Then open The plan on one page cold. If you can explain to yourself what's being built and in what order without me, it passes. If not, I revise it before I build anything, not halfway through."
 },
 
