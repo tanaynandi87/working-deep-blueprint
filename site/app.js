@@ -15,7 +15,22 @@ $("#sub").textContent=`The blueprint · ${B.meta.version} · ${B.meta.date}`;
 $("#foot").textContent=B.meta.basis;
 
 const tabs=[["plan","The plan"],["how","How it works"],["workflows","Workflows"],["pieces","The pieces"],["design","System design"],["moving","Moving in"],["tests","Tests"],["timeline","Timeline"],["scope","Scope & price"],["decisions","Your decisions"],["internal","For Tanay"]];
-$("#nav").innerHTML=tabs.map(([id,l],i)=>`<a href="#${id}" data-t="${id}" class="${id==='internal'?'int':''}"><span class="num" aria-hidden="true">${i+1}</span>${l}</a>`).join("");
+const secHtml=tabs.map(([id,l],i)=>`<a href="#${id}" data-t="${id}" class="${id==='internal'?'int':''}"><span class="num" aria-hidden="true">${i+1}</span>${l}</a>`).join("");
+/* Inside the brain map, sync-blueprint.js adds window.WD_MAP: the map's own tabs and brand, so both pages share one header.
+   The map's tabs go on the first row (with "The blueprint" lit) and the blueprint's sections on a row beneath. On its own,
+   the blueprint keeps its sections in the main row. */
+const MAP=window.WD_MAP;
+if(MAP){
+  $("#nav").setAttribute("aria-label","How Working Deep Works");
+  $("#nav").innerHTML=MAP.routes.map((r,i)=>`${r.group?`<span class="tab-sep" aria-hidden="true">${esc(r.group)}</span>`:""}<a href="${esc(r.href)}" class="${r.here?"on":""}"${r.here?' aria-current="page"':""}><span class="num" aria-hidden="true">${i+1}</span>${r.color?`<span class="dot" style="background:var(--${r.color})"></span>`:""}${esc(r.l)}</a>`).join("");
+  const br=$("#brand");br.href=MAP.home;br.setAttribute("aria-label","Working Deep home");br.removeAttribute("title");
+  br.querySelector(".brand-text").innerHTML=`<b>${esc(MAP.brand[0])}</b><i>${esc(MAP.brand[1])}</i>`;
+  $("#sections").innerHTML=secHtml;$("#sections").hidden=false;$("#help").hidden=false;
+  document.querySelector(".top").classList.add("has-sections");
+}else $("#nav").innerHTML=secHtml;
+/* Sticky offsets follow the header's real height, which changes as its rows wrap. */
+const topBar=MAP?$("#sections"):document.querySelector(".top"),setTopH=()=>document.documentElement.style.setProperty("--toph",topBar.offsetHeight+"px");
+setTopH();if(window.ResizeObserver)new ResizeObserver(setTopH).observe(topBar);
 const keyHtml=`<div class="key">${Object.keys(B.statusKey).map(k=>`<span>${chip(k)} ${esc(B.statusKey[k][1])}</span>`).join("")}</div>`;
 const S={};
 
@@ -280,9 +295,12 @@ function openMod(id){location.hash="pieces";setTimeout(()=>{const el=document.ge
 function show(){
   const id=(location.hash||"#plan").slice(1),k=tabs.some(t=>t[0]===id)?id:"plan";
   $$("section").forEach(s=>s.classList.toggle("on",s.id==="s-"+k));
-  $$("nav a").forEach(a=>a.classList.toggle("on",a.dataset.t===k));
+  $$("nav a[data-t]").forEach(a=>a.classList.toggle("on",a.dataset.t===k));
+  centerOn();
   window.scrollTo(0,0);
 }
+/* Like the map: on narrow screens, scroll each tab row so the current tab is in view. */
+function centerOn(){document.querySelectorAll("#nav,#sections").forEach(n=>{const a=n.querySelector("a.on");if(a&&n.scrollWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-(n.clientWidth-a.offsetWidth)/2;});}
 window.addEventListener("hashchange",show);show();
 
 const root=document.documentElement;

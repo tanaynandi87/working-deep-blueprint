@@ -60,7 +60,7 @@ button{font:inherit;color:inherit}
 .brand-text{display:flex;flex-direction:column;line-height:1.15}
 .brand-text b{font-family:var(--serif);font-weight:500;font-size:17px}
 .brand-text i{font-style:normal;font-size:12px;color:var(--muted)}
-.tabs{display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:none;scroll-behavior:smooth}
+.tabs{position:relative;display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:none;scroll-behavior:smooth}
 .tabs::-webkit-scrollbar{display:none}
 .tabs a{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 13px;border-radius:999px;text-decoration:none;white-space:nowrap;
   color:var(--ink2);font-size:14px;font-weight:500;border:1px solid transparent;transition:background-color .2s var(--ease),color .2s}
@@ -74,6 +74,25 @@ button{font:inherit;color:inherit}
 .theme-btn:active{transform:scale(.92)}
 .theme-btn svg{width:18px;height:18px}
 @media (max-width:720px){ .top{gap:10px;padding:8px 14px} .brand-text{display:none} }
+/* The map's shared header (inside the brain map): its group labels, help button, and the blueprint's own sections on a second row. */
+.tab-sep{align-self:center;font:700 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 4px 0 12px;white-space:nowrap;border-left:1px solid var(--line);margin-left:6px}
+.tabs a .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;cursor:auto}
+.help-btn{font-weight:700;font-size:17px;font-family:var(--sans);text-decoration:none}
+/* On the blueprint the map's header scrolls away and the blueprint's own sections stay pinned, so the pinned bar stays short. */
+.top.has-sections{position:relative}
+.pagetabs{position:sticky;top:0;z-index:29;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:7px max(24px,env(safe-area-inset-right,0px)) 7px max(24px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+@media (max-width:720px){.pagetabs{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
+@media (min-width:1200px){.pagetabs{padding-left:18px;padding-right:18px}}
+.pagetabs::-webkit-scrollbar{display:none}
+.pagetabs[hidden]{display:none}
+.pagetabs a{display:inline-flex;align-items:center;min-height:36px;padding:0 11px;border-radius:999px;text-decoration:none;white-space:nowrap;color:var(--ink2);font-size:13.5px;font-weight:500;border:1px solid transparent}
+.pagetabs a:hover{background:var(--card);color:var(--ink)}
+.pagetabs a.on{background:var(--card2);border-color:var(--line2);color:var(--ink)}
+.pagetabs a .num{display:inline-grid;place-items:center;min-width:17px;height:17px;border-radius:9px;margin-right:6px;font-size:10.5px;font-weight:700;color:var(--muted);border:1px solid var(--line2);padding:0 4px}
+.pagetabs a.on .num{color:var(--bg);background:var(--ink);border-color:var(--ink)}
+.pagetabs a.int{color:var(--violet)}
+@media (max-width:1199px){ .pagetabs{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 36px),transparent)} }
+@media (min-width:1200px){ .pagetabs{flex-wrap:wrap;overflow:visible;row-gap:4px} .tab-sep{padding:0 2px 0 8px;margin-left:4px;font-size:10px} }
 /* Like the map: below desktop width the tabs scroll sideways with a fade at the edge; on desktops they wrap onto a second line. */
 @media (max-width:1199px){ .tabs{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 36px),transparent)} }
 @media (min-width:1200px){
@@ -92,7 +111,7 @@ button{font:inherit;color:inherit}
 main.wrap{padding-top:10px;padding-bottom:80px}
 section{display:none} section.on{display:block}
 section>h2:first-child{margin-top:0}
-h3[id],details.mod{scroll-margin-top:130px}
+h3[id],details.mod{scroll-margin-top:calc(var(--toph,76px) + 14px)}
 h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.015em}
 h2{font-size:clamp(32px,4vw,48px);line-height:1.05;margin:0 0 10px}
 h3{font-size:22px;line-height:1.2;margin:40px 0 14px}
@@ -132,7 +151,7 @@ td.mono,.mono{font-family:var(--mono);font-size:12.5px}
 footer{color:var(--muted);font-size:13px;padding:24px;border-top:1px solid var(--line)}
 
 /* ---------- modules ---------- */
-details.mod{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:10px;scroll-margin-top:130px}
+details.mod{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:10px;scroll-margin-top:calc(var(--toph,76px) + 14px)}
 details.mod>summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 details.mod>summary::-webkit-details-marker{display:none}
 details.mod[open]>summary{border-bottom:1px solid var(--line)}
@@ -174,7 +193,7 @@ details.spec .inner{padding:0 12px 10px}
 
 /* workflows master/detail */
 .wfwrap{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start}
-.wflist{position:sticky;top:120px;max-height:calc(100vh - 140px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:6px}
+.wflist{position:sticky;top:calc(var(--toph,76px) + 12px);max-height:calc(100vh - var(--toph,76px) - 32px);overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:6px}
 .wflist .grp{font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:12px 10px 6px}
 .wflist button{display:flex;gap:8px;width:100%;text-align:left;border:0;background:transparent;padding:8px 10px;border-radius:6px;cursor:pointer;font-size:14px;align-items:baseline}
 .wflist button:hover{background:var(--bg)}
@@ -313,9 +332,25 @@ pre.out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);b
 @media (max-width:760px){ .fan{grid-template-columns:1fr} .fan .arrow{transform:rotate(90deg)} }
 
 @media (max-width:680px){.q{grid-template-columns:1fr} h1{font-size:26px} .hbar{grid-template-columns:120px 1fr 40px}}
-@media print{.top nav,.filters,.theme-btn,.btn{display:none} .top{position:static} section{display:block!important;page-break-before:always} section#s-internal{display:none!important} details{break-inside:avoid} details:not([open])>*:not(summary){display:block} .wflist{display:none}}
+@media print{.top nav,.help-btn,.pagetabs,.filters,.theme-btn,.btn{display:none} .top{position:static} section{display:block!important;page-break-before:always} section#s-internal{display:none!important} details{break-inside:avoid} details:not([open])>*:not(summary){display:block} .wflist{display:none}}
 
 .g-row.marks .g-track{height:46px}
 .dag path{opacity:.45}
 .dag path.hl{opacity:1}
 .gantt{padding-bottom:20px}
+
+/* ---------- header: the map's own rules, so both pages share one header ---------- */
+.top{top:env(safe-area-inset-top,0px);padding-top:10px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+@media (max-width:720px){
+  .top{padding:8px 12px;gap:8px;padding-top:max(8px,env(safe-area-inset-top));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .brand-text{display:none}
+  .tabs{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 28px),transparent);padding:0 12px}
+}
+@media (min-width:1200px){
+  .top{align-items:flex-start;gap:14px;padding-left:18px;padding-right:18px}
+  .tabs{flex-wrap:wrap;overflow:visible;row-gap:4px;-webkit-mask-image:none;mask-image:none}
+  .tabs a{padding:0 9px;min-height:38px;font-size:13.5px}
+  .tabs a .num{margin-right:6px}
+  .brand,.theme-btn{margin-top:1px}
+}
+@media (min-width:1200px) and (max-width:1439px){ .brand-text i{display:none} }

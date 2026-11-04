@@ -1,5 +1,5 @@
 /* =====================================================================
-   WORKING DEEP · STAGE 2 BLUEPRINT · Draft 1 (2 Nov 2026)
+   WORKING DEEP · STAGE 2 BLUEPRINT · Draft 1.2 (4 Nov 2026)
    Written by Tanay for Speed. "I" = Tanay, "you" = Speed.
    Status codes on every point:
      D   Decided by Speed (source given)
@@ -14,9 +14,9 @@ window.BP = {
 meta: {
   title: "The Blueprint",
   sub: "Working Deep · Stage 2 · what gets built, in what order, and how we'll know it works",
-  version: "Draft 1.1",
+  version: "Draft 1.2",
   date: "4 Nov 2026",
-  basis: "Built on the Stage 1 report (22 Oct), our five calls, your voice notes, Ryan's two voice notes, your job description and the stage plan, updated on 4 Nov with what you told me on our call on 2 Nov. Ashley's drafts (shared 2 Nov) are not yet reflected."
+  basis: "Built on the Stage 1 report (22 Oct), our five calls, your voice notes, Ryan's two voice notes, your job description and the stage plan, checked line by line on 4 Nov against what you told me on our call on 2 Nov. Ashley's drafts (shared 2 Nov) are not yet reflected."
 },
 
 statusKey: {
@@ -36,6 +36,7 @@ cover: {
     "It's in two parts. Part A is everything you need to sell the winter 108 Days on the new system from about 1 December. Part B is everything else for the winter cohort's start around 15 January, then the library in February. I'd like you to approve Part A first, so I can start building it while you read Part B. Both parts pass the same return test.",
     "Every point is marked. \"Decided\" means you've said it. \"Yours to confirm\" means I answered it on 22 October and it needs your yes. \"My proposal\" is a design choice of mine you can change. Nothing is approved until you say so.",
     "How to read it. Start with The plan on one page. Then open the pieces that matter most to you. Each one answers the same seven questions in plain words, and the technical detail sits underneath behind a button you can ignore. The last tab, Your decisions, is the one thing I need back from you: tick or change each line, by voice note if that's easier.",
+    "Since our call on 2 Nov I've gone through every piece against what you said. Where you answered something it's now marked Decided and dated 2 Nov, and anything new you asked for is marked as not yet priced. Two new questions came out of it, Q12 (whether 1:1 admin moves into Part A) and Q13 (which calendar is the master).",
     "Tanay"
   ],
   returnTest: "Once you've approved a part, put it aside for 48–72 hours. Then open The plan on one page cold. If you can explain to yourself what's being built and in what order without me, it passes. If not, I revise it before I build anything, not halfway through."
@@ -82,7 +83,7 @@ decisions: {
     { id: "C8", t: "The Wednesday member email comes back as it was, then moves onto the library.", affects: "M8, M15" },
     { id: "C9", t: "The library aims for end of January to mid-February.", affects: "M15" },
     { id: "C10", t: "Every man's record is built by moving in everything that exists today.", affects: "M2" },
-    { id: "C11", t: "You, Ashley and I decide together whether your own tools join this system.", affects: "M14" }
+    { id: "C11", t: "Settled on 2 Nov: there is no Ashley assistant today, and a personal assistant beyond this system can wait (\"for now… let's not worry about that\"). I build what we signed up for first; your own AI talking to this one comes after.", affects: "M14" }
   ],
   decide: [
     { id: "Q1", t: "When a man drops out of 108 Days, what happens to what he still owes?", opts: ["He owes it in full", "Case by case, and I write down why", "Forgiven in set cases (tell me which)"], blocks: "M5, M6 (goes into the 108 Days terms)", partA: true },
@@ -94,20 +95,23 @@ decisions: {
     { id: "Q7", t: "Early-bird and deadline offers: keep, drop, or leave to Leona's brand work?", opts: ["Keep", "Drop", "Leona decides"], blocks: "M9a, M8 (membership offer)", partA: false },
     { id: "Q8", t: "The membership offer after a cohort ends:", opts: ["20% off, as now", "First month free", "No discount, just an invitation"], blocks: "M8 (needed by 12 Dec)", partA: false },
     { id: "Q9", t: "Medical details from retreat intake: how long do we keep them?", opts: ["Delete 30 days after the retreat (my recommendation)", "Keep on his record"], blocks: "M9b", partA: false },
-    { id: "Q10", t: "One system or two: Ashley's assistant and mine.", opts: ["Keep separate", "Fold into one"], blocks: "M14", partA: false },
-    { id: "Q11", t: "The scholarship fund (new on 2 Nov): what should the first version do?", opts: ["A donate button on the website, and I keep track of what comes in and goes out", "Also ask men when they enroll", "Also the 3% opt-in at checkout, like a tip", "Donors can give without their name"], blocks: "M5, M11 (new scope: I'll price it before building)", partA: false }
+    { id: "Q10", t: "Answered on 2 Nov: there's no Ashley assistant, so there is nothing to merge. Still open: will you use your own AI app (ChatGPT or another) alongside the system's assistant, and which one?", opts: ["Just the system's assistant for now", "ChatGPT too (tell me which plan)", "Decide after the build"], blocks: "Nothing in the build (M14 goes ahead)", partA: false },
+    { id: "Q11", t: "The scholarship fund (new on 2 Nov): what should the first version do?", opts: ["A donate button on the website, and I keep track of what comes in and goes out", "Also ask men when they enroll", "Also the 3% opt-in at checkout, like a tip", "Donors can give without their name"], blocks: "M5, M11 (new scope: I'll price it before building)", partA: false },
+    { id: "Q12", t: "1:1 admin (new on 2 Nov): you've had four or five new 1:1 clients in the last three weeks. Move the online agreement, payment plan and template bookings (M10) into Part A?", opts: ["Yes, move it into Part A", "No, keep it in Part B; new clients use the current paper process until January"], blocks: "M10", partA: true },
+    { id: "Q13", t: "Your two calendars (new on 2 Nov): invites to speed@ don't reach the calendar you actually use. Which one should be the master?", opts: ["My personal Google calendar (my recommendation)", "The speed@ calendar"], blocks: "M7 (new scope: I'll price it before building)", partA: true }
   ],
   inputs: [
     { t: "Squarespace login (or exports of the mailing list, customers, orders and subscriptions). Done on 2 Nov", by: "Done", from: "You", mod: "M2" },
-    { t: "Access to the workingdeep.com domain settings (DNS), or the name of whoever set up the email", by: "≈10 Nov", from: "You", mod: "M0" },
+    { t: "Access to the workingdeep.com domain settings (DNS). On 2 Nov you said speed@ sits on your Google account and Maya (Jeremiah) set up what exists. I'll only ask for him if I can't get in", by: "≈10 Nov", from: "You", mod: "M0" },
     { t: "Open a Stripe account in your business's name and invite me (I can't enter your bank details)", by: "≈12 Nov", from: "You", mod: "M5" },
     { t: "Your payment spreadsheet (or a voice note walking me through who owes what)", by: "≈15 Nov", from: "You", mod: "M2, M5" },
     { t: "Ryan's 108 Days and retreat roster sheets, his welcome email text, the cohort calendar template", by: "≈10 Nov", from: "Ryan", mod: "M2, M6" },
     { t: "JotForm access, so the signed waivers can be archived before it's cancelled", by: "≈15 Nov", from: "Ryan", mod: "M2" },
     { t: "Robert's running list of members and comped men", by: "≈15 Nov", from: "Robert", mod: "M2, M8" },
-    { t: "45 minutes to tag former regulars by hand (your \"J-curve\")", by: "≈18 Nov", from: "You", mod: "M2" },
+    { t: "A weekly talk-through of about 20 men, the 72 alumni first, so their stories go into their records (agreed 2 Nov; it can run to the end of December). Former regulars get tagged in the same sessions", by: "Weekly from ≈16 Nov", from: "You", mod: "M2" },
     { t: "Winter cohort dates and call times, and the 1:1 windows you'll open", by: "≈20 Nov", from: "You", mod: "M6, M7" },
-    { t: "Ryan and Robert check the Stage 1 report for accuracy and gaps (still to happen)", by: "≈15 Nov", from: "Ryan, Robert", mod: "all" }
+    { t: "A second pair of eyes on the Stage 1 report and this blueprint. On 2 Nov you said you may ask Maya (Jeremiah), and that Ryan and Robert's review may matter less than you thought. Your call", by: "Open", from: "You", mod: "all" },
+    { t: "Your personal Gmail address, spelled out once in a voice note, before I connect the calendar (my notes spell it two ways)", by: "≈12 Nov", from: "You", mod: "M7" }
   ]
 },
 
@@ -119,23 +123,24 @@ modules: [
   id: "M0", part: "A", ms: "MS1", title: "The account, payments and who sees what", status: "B",
   blockedBy: "Q2 (who reads your private notes)",
   plain: {
-    what: "A Working Deep account on GoHighLevel, Stripe connected to it for cards, emails sent from workingdeep.com so they land in inboxes, and a login for each person that shows them only what their job needs.",
-    why: "Five Gmail accounts, logins passed around in messages, an assistant inbox you can't get into, and nobody sure where workingdeep.com email lives (Stage 1 §7, §11.10).",
+    what: "A Working Deep account on GoHighLevel (opened on our 2 Nov call; your login is speed@workingdeep.com), Stripe connected to it for cards, emails sent from workingdeep.com so they land in inboxes, and a login for each person that shows them only what their job needs.",
+    why: "Five Gmail accounts, logins passed around in messages, an assistant inbox you can't get into, and, until 2 Nov, nobody sure where workingdeep.com email lives (Stage 1 §7, §11.10). You've since told me speed@ is on your Google account.",
     order: "First. Everything else is built on it.",
-    changes: "Almost nothing day to day. Your private inboxes stay private. Ryan and Robert get their own logins instead of shared passwords.",
+    changes: "Almost nothing day to day. Your private inboxes stay private. Ryan and Robert get their own logins instead of shared passwords. The assistant Gmail is replaced by assistant@workingdeep.com, which you liked on 2 Nov.",
     need: "By ≈10 Nov: domain access. By ≈12 Nov: open Stripe and invite me. Your answer to Q2.",
     success: "Each person logs in and sees only their part. A test email from the system lands in a Gmail inbox, not spam. SMS is off.",
     fence: "Merging or moving your five Gmail accounts, and moving old email. That's a separate tidy-up (see Scope)."
   },
   spec: [
-    ["Account", "One GoHighLevel sub-account \"Working Deep\", time zone America/New_York, currency USD. Business profile with the S corporation name for invoices.", "P"],
+    ["Account", "Created on 2 Nov with you as admin (speed@workingdeep.com). Still to fill in: time zone America/New_York, currency USD, and the business profile with the S corporation name for invoices.", "D"],
     ["Plan", "GoHighLevel plan that includes workflows, payments, memberships/courses and websites. Current pricing to be confirmed before you're billed.", "V"],
     ["SMS", "No phone number bought. SMS and WhatsApp channels left off. Every workflow uses email only.", "D"],
-    ["Email sending", "A dedicated sending subdomain (e.g. mail.workingdeep.com) with SPF, DKIM and DMARC records. From name \"Speed\" for your voice; \"Working Deep\" for logistics. Replies to logistics emails go to the shared team inbox, never to your private inboxes.", "P"],
+    ["Email sending", "A dedicated sending subdomain (e.g. mail.workingdeep.com) with SPF, DKIM and DMARC records. From name \"Speed\" for your voice; \"Working Deep\" for logistics. Replies to logistics emails go to assistant@workingdeep.com, never to your private inboxes.", "P"],
+    ["Assistant inbox", "assistant@workingdeep.com replaces the assistant Gmail (your yes on 2 Nov). Ryan holds that Gmail today, so we switch over with him and forward the old address for a while.", "D"],
     ["Stripe", "Your Stripe account connected through GoHighLevel Payments. Card fees absorbed (no surcharge). Check that Stripe accepts cards from European members on your entity.", "V"],
-    ["Users and roles", "You: admin (you won't need to log in). Tanay: admin. Ryan: 108 Days, retreats, contacts; can see prices including 1:1 (your rule, 7–10 Oct). Robert: 108 Minutes contacts and emails only; no payments. Ashley: per Q2/Q10. Cohort assistants: no login.", "P"],
+    ["Users and roles", "You: admin (in most cases you won't need to log in; you'll get a short walkthrough anyway). Tanay: admin. Ryan: 108 Days, retreats, contacts; can see prices including 1:1 (your rule, 7–10 Oct). Robert: 108 Minutes contacts and emails only; no payments. Ashley: only if she stays on, per Q2. Cohort assistants: no login.", "P"],
     ["Private notes", "Your private notes need to be hidden from some users. GoHighLevel limits what each role can see, but not field by field, so I'll test this first. If it can't be done safely, private notes live in a separate locked store the assistant can read for you, not in the CRM.", "V"],
-    ["Security", "Shared logins move into a password manager. The assistant Gmail and JotForm passwords are changed (one was written out in a voice note transcript).", "P"],
+    ["Security", "Shared logins (including 108minutes@, which Robert, Austin and Maya can open today) move into a password manager. The assistant Gmail and JotForm passwords are changed (one was written out in a voice note transcript).", "P"],
     ["Documentation", "An access sheet: who has which login, what each role can see, where every setting lives.", "D"]
   ],
   hours: 6
@@ -147,15 +152,16 @@ modules: [
     why: "\"Your head is the database.\" Holds, credits, who's eligible for what, and who introduced whom live in your memory. You and Ryan each asked, separately, for one place with a man's whole history (Stage 1 §1, §4).",
     order: "Second, straight after the account. The call list, payments, onboarding and your assistant all read from it.",
     changes: "You stop being the only place a man's story lives. You'll read it through the assistant or a one-page summary, never the CRM screens. When you say to a man \"when you came in last August, when Nico connected us…\", the system has it.",
-    need: "One 30-minute look, around 20 Nov, at three real records. You listed the fields on 20 Oct; this is to check I've got them right.",
+    need: "One 30-minute look, around 20 Nov, at three real records. You listed the fields on 20 Oct; this is to check I've got them right. Then the weekly talk-through (see M2), which fills in each man's story.",
     success: "For Harold, the record answers without asking you: how he came in, what he's done, what he's paid, what credits he's had, and whether he's a member now.",
     fence: "Photographing your discovery-call notes into the record (a later idea). Tracking which piece of content brought each man in beyond one \"what pulled him in\" line."
   },
   spec: [
     ["Contact fields", "See System design › Fields: origin, relationship, 108 Minutes, credits, consent, retreat and private groups.", "P"],
     ["Enrollments", "Each thing a man buys or joins is an opportunity in that offering's pipeline (108 Days, Retreats, 1:1), with its own fields for cohort, role, price, discount and reason, hold and waiver. A man's history is his list of enrollments.", "P"],
-    ["Tags", "Kept for groups you'll email or filter by: cohort, alumni, member, comped, new to the work / in the work, EMLT, teacher training, guest teacher, team. Ryan's list is the starting point. Quad means one of your first-year groups of four (twelve men in all), as you explained on 2 Nov. The Bay Area group in Squarespace is not carried over.", "P"],
+    ["Tags", "Kept for groups you'll email or filter by: cohort, alumni, member, comped, new to the work / in the work, EMLT, teacher training, guest teacher, team. Ryan's list is the starting point. Quad means one of your first-year groups of four (twelve men in all), as you explained on 2 Nov. Embodiment Lab is a tag too (your yes on 2 Nov). The Bay Area group in Squarespace is not carried over (your instruction, 2 Nov).", "D"],
     ["Introductions", "Who introduced whom is stored on the introduced man (\"Referred by\") and counted on the introducer. If GoHighLevel can link two contacts natively, the link is used; otherwise the introducer's name and record ID are stored.", "V"],
+    ["Friday look", "Whenever you want it, say \"show me what we put in this week\" and you get a short list of new and changed records. You suggested a half hour on a Friday afternoon, not every week.", "P"],
     ["One-page summary", "A plain-text summary of a man (built by the assistant later; in Part A, a saved view Ryan can read).", "P"],
     ["Data rules", "Email is the main key; phone the second. A man with no email (a raw introduction) is allowed. Duplicates are merged by hand from a weekly list.", "P"]
   ],
@@ -165,20 +171,22 @@ modules: [
   id: "M2", part: "A", ms: "MS1", title: "Moving in what already exists", status: "T22",
   plain: {
     what: "Everything you already have, brought into one record per man. That covers the mailing list, the alumni list, Squarespace customers and members, Ryan's rosters, your payment sheet, the signed waivers and Ryan's old tags. Just before selling opens, the winter deposits you've taken by Venmo or Zelle go in too.",
-    why: "Otherwise the records start empty. You chose to take winter deposits before the system exists (20 Oct), so they have to be moved in.",
+    why: "Otherwise the records start empty. You chose to take winter deposits before the system exists (20 Oct), so they have to be moved in. And no list holds what you know about each man; on 2 Nov we agreed that has to come from you, by voice, over time.",
     order: "Straight after the record design. A second pass in the last week of November for the winter deposits.",
-    changes: "One sitting with me (about 45 minutes) to tag former regulars by hand, your own idea from our first call. After that, nothing.",
-    need: "The inputs listed under Your decisions, by ≈15 Nov. The tagging session ≈18 Nov. The deposits list ≈27 Nov.",
+    changes: "Each week, until about the end of December, you talk through about 20 men, the 72 Working Deep alumni first. What you say goes into their records, and former regulars get tagged as you go (your J-curve idea). You said it would train you as well as the assistant.",
+    need: "The inputs listed under Your decisions, by ≈15 Nov. The weekly talk-through from ≈16 Nov. The deposits list ≈27 Nov.",
     success: "Every man on any existing list has exactly one record. Every winter deposit shows against the right man with the right amount and terms.",
     fence: "Going back through two years of text messages for lost introductions (low priority, your idea). Attendance before June, unless Austin's sheets turn up."
   },
   spec: [
     ["Sources", "See Moving in: 11 sources mapped field by field, with owner and date.", "P"],
+    ["Personal context", "Each week I send you about 20 names. You talk about each in a voice note (or on a call with me); I turn it into the record's notes, tags and fields and send you the result to glance at. Alumni first, then 108 Days men, then the rest. Agreed 2 Nov; the way you send it is my proposal.", "D"],
     ["Squarespace members", "Their billing stays on Squarespace until Part B. They're imported as members but not charged by the new system, so nobody pays twice.", "P"],
     ["JotForm", "Every signed waiver downloaded as PDF into a Drive folder and linked from the man's record. Then you can cancel JotForm (your rule, 15 Oct).", "D"],
     ["Merging", "Script de-duplicates on email, then phone, then name. Anything uncertain goes on a review list for Ryan or me, never auto-merged.", "P"],
     ["Unsubscribes", "Anyone who unsubscribed on Squarespace stays unsubscribed.", "P"],
-    ["Confidential data", "1:1 payment history from your sheet goes onto 1:1 enrollments only (visible to you, me, Ryan, Ashley).", "D"]
+    ["Bay Area", "Everyone on the list is imported, but the Bay Area segment isn't carried over as a tag (\"not what it says it is\"). Nothing is deleted on Squarespace.", "D"],
+    ["Confidential data", "1:1 payment history from your sheet goes onto 1:1 enrollments only (visible to you, me and Ryan, and Ashley if she stays on).", "D"]
   ],
   hours: 12
 },
@@ -197,7 +205,8 @@ modules: [
     ["Phone button", "An Apple Shortcut on your iPhone (inferred from iMessage) in the share sheet and by Siri (\"Hey Siri, new man\"). It sends the shared text or your dictation to a small private service on my server.", "P"],
     ["Fallback", "Forward the text or email to a private address (new@…) and the same thing happens.", "P"],
     ["Reading it", "The service uses an AI model to pull out name, phone, email, introducer and a one-line note, then creates or updates the contact through the GoHighLevel API. Source = Introduction; Came in = today; added to Men to talk to › Introduced.", "P"],
-    ["Confirmation", "Email to you: who was saved, who introduced him, and a link to fix it if it's wrong.", "P"],
+    ["By voice", "Saving an introduction by voice note: your yes on 2 Nov (\"that would be great\").", "D"],
+    ["Confirmation", "Email to you: who was saved, who introduced him, and a link to fix it if it's wrong. Once your assistant is on (M14), you can also see the new man appear there.", "P"],
     ["Workflow", "WF-01.", "P"],
     ["Privacy", "The text is used only to make the record; it isn't stored on the server afterwards.", "P"]
   ],
@@ -213,7 +222,7 @@ modules: [
     changes: "Monday: a short list arrives. You keep three, swap two, make your calls, and say a sentence about each call to your phone button so the record's up to date.",
     need: "Q5, by ≈20 Nov.",
     success: "Through December you get a list every Monday and say it's mostly the right men.",
-    fence: "Contacting those men for you. It suggests; you call. AI ranking that learns from your swaps comes later, once there's history."
+    fence: "Contacting those men for you. It suggests; you call. AI ranking that learns from your swaps comes later, once there's history. In December the reasons will be thinner for men you haven't talked through yet (M2); the alumni go first for that reason."
   },
   spec: [
     ["Rules (v1)", "In order: (1) introduced, not yet spoken to; (2) Talk again on ≤ today; (3) former regulars not contacted in 90 days; (4) 108 Days and retreat alumni not enrolled in the coming cohort, not contacted in 90 days. Excluded: anyone marked Do not suggest, current enrollments, unsubscribed, team.", "P"],
@@ -240,7 +249,7 @@ modules: [
     ["Products", "108 Days full $3,700; plan 3 × $1,350; assistant $2,400. See System design › Products.", "D"],
     ["Invoices", "One invoice per enrollment with a payment schedule (deposit now, then two instalments). Discounts as a line with type and reason fields.", "V"],
     ["Manual payments", "Venmo, Zelle and wire recorded as payments on the invoice, by Ryan or me when you tell us.", "V"],
-    ["Credits", "Referral: $500 to both men, stored as a credit on each record until used. Membership offset: his membership fees credited into the 108 Days price, membership carries on. 1:1 into 108 Days: \"volume discount\" line. 108 Days → 1:1 near the end: no credit (your rule, 20 Oct).", "D"],
+    ["Credits", "Referral: $500 to both men, stored as a credit on each record until used. Membership offset: his membership fees credited into the 108 Days price, membership carries on. 1:1 into 108 Days: a \"volume discount\" line, always entered by hand at your discretion and never calculated (your rule, 2 Nov). 108 Days → 1:1 near the end: no credit (your rule, 20 Oct).", "D"],
     ["Three-day hold", "Stage Held with an expiry date. On the day, you get: \"Hold for Dan ends today: keep, release or extend.\" Nothing goes to Dan.", "P"],
     ["Reminders", "To the man by email, 3 days before each due date and on the day, with the pay link. If 7 days overdue, it goes on your Monday overdue note instead of chasing him again.", "P"],
     ["Terms acknowledgement", "The 108 Days terms (including the Q1 policy) are part of what he signs at enrollment, so \"I need you to remember them\" is in writing.", "B"],
@@ -266,8 +275,9 @@ modules: [
     ["Waiver and terms", "One e-sign document: the existing waiver text plus your Q1 terms. Media consent is a separate yes/no tick, so signing doesn't grant use of his image by itself (the current wording does, and you hadn't seen it).", "P"],
     ["Cohort calendar", "One Google Calendar per cohort, made once from a template, linked in the welcome. Replaces Ryan rebuilding it each time.", "P"],
     ["1:1 booking", "Booking link limited to the right weeks: week 2 for men you know, weeks 3–4 for new men, last 2–3 weeks for the second call (your pattern).", "P"],
-    ["Assistants", "Enrolled first, at $2,400, role Assistant. Tagged so they keep 108 Minutes access through the gap to the next cohort.", "D"],
+    ["Assistants", "Enrolled first, at $2,400 (about two-thirds of the price, your rule), role Assistant. Tagged so they keep 108 Minutes access through the gap to the next cohort.", "D"],
     ["Chasing", "Unsigned after 3 days: one reminder. Seven days before the start: Ryan gets the list of anyone still missing anything.", "P"],
+    ["Recordings", "Full-group calls stay recorded in Zoom. The cohort assistant still sends a recording to anyone who missed a call (as now, 2 Nov).", "D"],
     ["Cancellation", "If a cohort doesn't run, one email to everyone enrolled and a refund task for you. Never automatic refunds.", "P"],
     ["Workflows", "WF-04, WF-05, WF-07, WF-22.", "P"]
   ],
@@ -275,19 +285,20 @@ modules: [
 },
 {
   id: "M7", part: "A", ms: "MS2", title: "Bookings", status: "B",
-  blockedBy: "Q6 (phone or Zoom for the 15-minute call)",
+  blockedBy: "Q6 (phone or Zoom for the 15-minute call), Q13 (which calendar is the master)",
   plain: {
     what: "Booking pages for your 15-minute call, your 45-minute discovery call and the 108 Days 1:1s. They read your Google Calendar, put your own Zoom room in every booking, and send an email reminder. Calendly goes.",
-    why: "You don't trust Calendly, add Zoom links by hand, and often schedule by hand anyway (7–10 Oct, 15 Oct).",
+    why: "You add Zoom links by hand and often schedule by hand anyway (7–10 Oct, 15 Oct). On 2 Nov you put it more exactly: Calendly \"is doing what it does\"; the trouble is that your calendar isn't always written up, and invites to speed@ don't reach the calendar you use.",
     order: "Part A, because enrollment and the website depend on it.",
-    changes: "Men pick from the times you've opened. Bookings appear in the calendar you already use.",
-    need: "Q6. The windows you want bookable in December and January, by ≈20 Nov.",
+    changes: "Men pick from the times you've opened. Bookings appear in the calendar you already use. Later you can block time by voice through the assistant (M14), so the calendar is easier to keep written.",
+    need: "Q6 and Q13. Your personal Gmail address, spelled out. The windows you want bookable in December and January, by ≈20 Nov.",
     success: "Ten test bookings in a row land in the right place with the right Zoom link and no double-booking.",
-    fence: "Planning your quarter ahead (Ashley's lane). Booking the 1:1 coaching series (Part B, M10)."
+    fence: "Planning your quarter ahead (not in this build). Booking the 1:1 coaching series (M10)."
   },
   spec: [
     ["Calendars", "15-minute call; Discovery call (45 min, private link only); 108 Days 1:1 (60 min). See System design › Calendars.", "P"],
-    ["Google Calendar", "Connected to the calendar on your personal Google account so busy times are respected and bookings appear there. Only free/busy is read.", "V"],
+    ["Google Calendar", "Connected to the calendar on your personal Google account so busy times are respected and bookings appear there. Only free/busy is read. This is the GoHighLevel connection you agreed on 2 Nov (\"probably\").", "V"],
+    ["Two calendars in step", "New on 2 Nov: invites to speed@ and blocks on either calendar show on the other, so one calendar is the truth (Q13). Not yet priced.", "V"],
     ["Zoom", "Your personal room link used as the meeting location (so you're never in the wrong meeting), not a new meeting each time.", "P"],
     ["Reminders", "Email only, 24 hours before. No SMS.", "D"],
     ["Retire Calendly", "Once the three booking pages are live and tested.", "D"]
@@ -304,7 +315,7 @@ modules: [
     changes: "Nothing in November. From December, Montana registrations land on the man's record.",
     need: "Q4, the Montana price, and Q7 if there's an early-bird.",
     success: "Every Montana booking is on the right man's record before intake opens.",
-    fence: "Intake, travel and arrival (Part B, M9b). Chef, venue and bus bookings."
+    fence: "Intake, travel and arrival (Part B, M9b). Chef, venue and bus bookings. The welcome itself goes out at registration (your decision, 2 Nov; see M9b)."
   },
   spec: [
     ["Product", "Retreat: Montana 2027 at the price you set; 108 Days alumni price; 1:1 client price; assistant at one-third.", "O"],
@@ -345,7 +356,7 @@ modules: [
 {
   id: "M9b", part: "B", ms: "MS4", title: "Retreat intake and arrivals", status: "T22",
   plain: {
-    what: "After he registers: one intake form (emergency contact, diet, travel and arrival time, medical needs), the waiver, the info sheet and how to join the retreat's Signal group. Reminders go out on their own. Ryan sees who's missing anything and whose flight lands after the start.",
+    what: "The moment he registers (your decision on 2 Nov, as for 108 Days): one intake form (emergency contact, diet, travel and arrival time, medical needs), the waiver, the info sheet and how to join the retreat's Signal group. Reminders go out on their own. Ryan sees who's missing anything and whose flight lands after the start.",
     why: "Medical and dietary needs not collected. A man lands three hours late at every retreat. Forms chased by hand (Stage 1 §3).",
     order: "Part B, ready before Montana's preparation in March.",
     changes: "Ryan stops chasing. You stop being surprised at the start time.",
@@ -368,9 +379,9 @@ modules: [
   plain: {
     what: "The 1:1 agreement signed online instead of printed. Payment plans on an invoice (wire and Zelle recorded, card if you allow it). A count of calls, and a note to you before call 9 for the renewal talk. Men who said \"talk in six months\" come back onto your Monday list on the right day.",
     why: "Paper agreement. Plans in \"my little spreadsheet\". Calls counted by copying calendar entries. Prospects forgotten (Stage 1 §3).",
-    order: "Part B, unless a new client signs in November.",
+    order: "Part B for now. But you've had four or five new 1:1 clients in the three weeks before 2 Nov, so I've asked whether to move it into Part A (Q12).",
     changes: "Everything between you and the man stays exactly as it is. No notes, no recordings.",
-    need: "Your current agreement (the Pages document). Whether 1:1 clients may pay by card.",
+    need: "Your current agreement (the Pages document). Whether 1:1 clients may pay by card. Q12.",
     success: "The next new client signs and pays without anything printed, and you hear about the renewal talk before call 9.",
     fence: "Session notes of any kind. Recording."
   },
@@ -380,6 +391,7 @@ modules: [
     ["Prices", "Never published. Invoices built by hand per client. Visible to you, me, Ryan and Ashley only.", "D"],
     ["Call count", "Each 1:1 booking marked held increments the count; at 8, you get the renewal note.", "P"],
     ["Booking", "A set weekly slot from a template, your choice on 2 Nov: at sign-up the client's ten calls are placed across 13 weeks (say, Mondays at 11), skipping three weeks. A man without regular blocks, like one who travels for work, is booked by hand.", "D"],
+    ["Booking pattern", "Which three weeks are skipped (you said \"probably something like\" four on, one off) is set with you during the build.", "O"],
     ["Workflow", "WF-18.", "P"]
   ],
   hours: 8
@@ -391,13 +403,15 @@ modules: [
     why: "Squarespace holds sign-ups, payments and the list separately. SEO scored 45/100. One stranger found you online and became a client (Stage 1 §7).",
     order: "Built through November alongside Part A, switched over by ≈15 Jan.",
     changes: "It stays calm and stable-looking (\"the president's haircut\"). Squarespace can be cancelled after the switch.",
-    need: "Leona's brand document (hoped ≈22 Nov). Your approval of page copy. Domain access.",
+    need: "Leona's brand blueprint (hoped ≈22 Nov; on 2 Nov you said it's now a brand blueprint rather than a kit). Your approval of page copy. Domain access. The logo files from Mike Reynolds.",
     success: "Every form and payment on the site creates or updates a record. Another developer could take it over from the code and the handover notes.",
     fence: "The members' library (M15). A large public teaching library. Writing new copy beyond moving and tidying what you have."
   },
   spec: [
     ["Build", "Hand-written HTML/CSS pages inside GoHighLevel's site builder, kept in a code repository so they can move to any host.", "P"],
     ["Pages", "Home, 108 Minutes (register), 108 Days, Retreats, 1:1 (no prices), About, a few free teachings, 15-minute call, legal pages.", "P"],
+    ["Logo", "Your current Working Deep logo stays; Leona isn't redoing it. Mike Reynolds holds every version and you introduced us on 2 Nov.", "D"],
+    ["Scholarship", "A donate button anyone can use, including people who'll never sign up (Q11). Not yet priced.", "D"],
     ["SEO", "Titles, descriptions, structured data, sitemap, redirects from every old Squarespace URL.", "P"],
     ["Switch-over", "DNS moved on a quiet weekday; Squarespace kept for 30 days in case.", "P"]
   ],
@@ -417,6 +431,7 @@ modules: [
   spec: [
     ["Store", "Testimonial records: man, offering, theme, format (text, photo, video), the quote, link, permission yes/no and date.", "P"],
     ["Capture", "Ryan's last-call recordings and anything you forward go in through the same phone button with \"testimonial\".", "P"],
+    ["Where files live", "Photos and videos kept in GoHighLevel's media storage, private to the team; anything men may see goes through the library (M15). How much storage your plan includes I'll check.", "V"],
     ["Permission", "Where permission isn't recorded, a short permission request goes to the man before the testimonial is used.", "P"],
     ["Workflow", "WF-19.", "P"]
   ],
@@ -429,7 +444,7 @@ modules: [
     why: "Ten steps every week from scratch, your most frustrating day, and new sign-ups never added to the list (Stage 1 §3).",
     order: "Part B, switched when the list moves (with the website).",
     changes: "You write the essay; the rest is filling a template, on phone and laptop.",
-    need: "Leona's brand for the banner style.",
+    need: "Leona's brand for the banner style. On 2 Nov you said her work now covers which emails men get, when, and how they're written, so I'll be in at least one of her writers' rooms and line the system's emails up with it.",
     success: "Building the email takes you under 20 minutes.",
     fence: "Writing or editing the essay. Social posts. AI essay reframing (an idea for later)."
   },
@@ -442,21 +457,22 @@ modules: [
   hours: 6
 },
 {
-  id: "M14", part: "B", ms: "MS4", title: "Your assistant", status: "B",
-  blockedBy: "Q10 (one system or two)",
+  id: "M14", part: "B", ms: "MS4", title: "Your assistant", status: "P",
   plain: {
     what: "An assistant you talk to. It answers (\"how many men signed up this week?\"), finds (\"the testimonials from Dan\"), acts (\"send this one to Leona\", \"Dan's in for January, deposit by Zelle\") and suggests (the Monday list).",
     why: "You won't use a CRM directly, and voice is how you work (How to Work With Speed).",
     order: "After the records and assets are in. It's only as good as what it can read.",
     changes: "This is how you use everything.",
-    need: "Q10 with Ashley. Where you want to talk to it: an app on your phone, or by voice note.",
+    need: "Where you want to talk to it. On 2 Nov you said on your phone, talking back to you. Q10 only if you want your own AI app alongside it.",
     success: "You use it without being prompted for a week.",
-    fence: "Reading your private inboxes unless you decide otherwise. Sending anything to a man without your yes."
+    fence: "Reading your private inboxes unless you decide otherwise. Sending anything to a man without your yes. Reading your old text messages (it only sees what you pass to it). A chief-of-staff AI across your personal and business life (your idea on 2 Nov; after this build)."
   },
   spec: [
     ["Model", "An AI service paid by use (Claude or OpenAI), swappable without rebuilding.", "P"],
     ["Tools", "Read contacts, enrollments, invoices, calendars, testimonials; create introductions; record payments; draft emails. Every action that sends something asks you first.", "P"],
-    ["Interface", "Voice-first chat on your phone. Text works too.", "O"],
+    ["Interface", "Voice-first on your phone, and it talks back (what you asked for on 2 Nov). Text works too. Which app it lives in is still open.", "O"],
+    ["Memory", "You expect it to bring things up unprompted, the way Gemini once recalled a detail from weeks before. A plain search over your records won't do that on its own, so I'll give it a written memory of what you tell it and instructions to surface what's relevant (\"Dan was introduced by Nico; Nico has a $500 credit\"). I'll show you what it remembers.", "P"],
+    ["Calendar", "Blocking time by voice (\"hold Thursday morning for writing\"), so your calendar stays written.", "P"],
     ["Handover", "Its instructions and tools written down so another builder can maintain it.", "D"]
   ],
   hours: 24
@@ -468,13 +484,15 @@ modules: [
     why: "You feel \"out of integrity\" selling the membership without the Wednesday email, and men between containers want \"some Speed teaching\" (20 Oct).",
     order: "After the build, end of January to mid-February.",
     changes: "You can sell the membership \"with integrity\".",
-    need: "What goes in first (Nick's clips), and whether it's audio-first like John Wineland's.",
+    need: "Whether it's audio-first like John Wineland's. On 2 Nov you asked me to own the curation (\"what in Hollywood an editor would do\"), using AI, so I choose and tag; you approve.",
     success: "Members log in and use it; the Wednesday email goes out every week.",
     fence: "A full client portal with invoices, contracts and booking (\"too hand-holding\")."
   },
   spec: [
     ["Platform", "GoHighLevel memberships/courses, linked from the website, members' login by email.", "T22"],
     ["Access", "Active members and men in a current cohort.", "P"],
+    ["Curation", "I review, cut and tag your material with AI help: Nick's clips, practices, and your teaching from the 108 Days recordings in Zoom (\"I teach well on 108 days\"). Not yet priced (your \"stage five\").", "D"],
+    ["Men's voices", "108 Days calls include men's shares, so only your teaching segments go in unless the men agree.", "P"],
     ["Wednesday", "Each week one teaching and one practice from the library.", "P"]
   ],
   hours: 12
@@ -646,7 +664,7 @@ design: {
     ["Tanay", "Everything", "Admin, builder, maintainer"],
     ["Ryan", "Contacts, 108 Days, Retreats, 1:1 prices", "No settings; private notes per Q2"],
     ["Robert", "108 Minutes contacts, Friday/Sunday emails, attendance", "No payments, no 1:1, no notes"],
-    ["Ashley", "Per Q2 and Q10", ""],
+    ["Ashley", "Only if she stays on (open)", "Per Q2"],
     ["Cohort assistants", "No login", "Ryan shares what they need"]
   ],
 
@@ -663,7 +681,7 @@ design: {
 
 /* ----------------------------------------------------------- MIGRATION */
 migration: [
-  ["Squarespace mailing list (591)", "You", "Names, emails, unsubscribes", "Contacts; Thursday consent; unsubscribed kept", "Export", "≈12 Nov"],
+  ["Squarespace mailing list (591)", "You", "Names, emails, unsubscribes", "Contacts; Thursday consent; unsubscribed kept; Bay Area segment dropped", "Export (seen together on 2 Nov)", "≈12 Nov"],
   ["Working Deep Alums group (72)", "You", "Names, emails", "Tag alumni", "Export", "≈12 Nov"],
   ["Squarespace customers and orders", "You", "Drop-ins, retreat purchases, dates", "Contacts; Came in; retreat enrollments (completed)", "Export", "≈12 Nov"],
   ["Squarespace subscriptions (5 monthly, 17 annual)", "You", "Members, start dates", "Access = member; Billing = Squarespace", "Export", "≈12 Nov"],
@@ -673,7 +691,7 @@ migration: [
   ["JotForm submissions", "Ryan", "Signed waivers, emergency contacts", "PDFs to Drive; Waiver signed dates; emergency contact", "Export", "≈15 Nov"],
   ["systeme.io copy (24 May)", "Ryan", "Ryan's tags", "Tags only, matched to existing contacts", "Export", "≈15 Nov"],
   ["Robert's running list", "Robert", "Members, comped men, recent sign-ups", "108 Minutes access; checks the Squarespace import", "Whatever he keeps", "≈15 Nov"],
-  ["Your J-curve session", "You", "Former regulars, in your memory", "Tag former-regular; notes", "45-minute call with me", "≈18 Nov"],
+  ["Your weekly talk-through", "You", "Each man's story and former regulars, in your memory", "Notes, fields, tags (former-regular)", "Voice note or call, about 20 men a week, alumni first", "Weekly ≈16 Nov to end Dec"],
   ["Winter deposits", "You", "Who's paid what by Venmo/Zelle", "108 Days enrollments + invoices with payments recorded", "Your sheet / voice note", "≈27 Nov"],
   ["Austin's attendance sheets", "Austin (if found)", "Attendance to June", "First / last attended", "Bonus", "Any time"],
   ["Testimonials Google Doc", "You", "Quotes", "Testimonial records (Part B)", "Doc", "Dec"]
@@ -696,7 +714,8 @@ tests: [
   ["T-13", "M2", "Pick 20 men at random from the old lists.", "Each has exactly one record with the right history."],
   ["T-14", "M8", "Week of 12–19 Dec.", "Autumn comped men get the last-free-Saturday note; on 19 Dec their comp ends except members, 1:1 clients and next-cohort assistants."],
   ["T-15", "M8", "Four Saturdays.", "Friday list matches Robert's own check; attendance recorded; every first-timer is on your Saturday note."],
-  ["T-16", "All", "Hand-over check.", "Each module has a one-page note: what it does, where it lives, how to change it."]
+  ["T-16", "All", "Hand-over check.", "Each module has a one-page note: what it does, where it lives, how to change it."],
+  ["T-17", "M2", "Talk through five men in a voice note.", "Within a day each record has your points in its notes and tags, and you get the list back to glance at."]
 ],
 
 /* ----------------------------------------------------------- TIMELINE */
@@ -705,17 +724,18 @@ timeline: [
   ["Wed 4 Nov", "Draft 1.1 to you, with Your decisions.", "Tanay", "D"],
   ["Thu 5 Nov", "We go through it together.", "You, Tanay", "D"],
   ["5–9 Nov", "You mark up Part A (a voice note is fine). I revise.", "You", "P"],
-  ["9–12 Nov", "Return test on Part A.", "You", "P"],
+  ["9–12 Nov", "Return test on Part A, alongside the first build days. I start with the account and records (M0, M1), which don't depend on it; if the test fails I revise before going further.", "You", "P"],
   ["From 9 Nov", "The build starts (after Diwali, 8–9 Nov). Inputs arrive; the account is finished (M0).", "You, Ryan, Tanay", "D"],
-  ["12–20 Nov", "Records and moving in (M1, M2); J-curve session ≈18 Nov.", "Tanay", "P"],
+  ["12–20 Nov", "Records and moving in (M1, M2). Your weekly talk-through starts ≈16 Nov, alumni first.", "Tanay, You", "P"],
   ["≈20 Nov", "Checkpoint MS1: you look at three records.", "You", "P"],
-  ["≈22 Nov", "Leona's brand document hoped for. Website keeps going either way.", "Leona", "D"],
+  ["≈22 Nov", "Leona's brand blueprint hoped for. Website keeps going either way.", "Leona", "D"],
   ["20–28 Nov", "Introductions, Monday list, payments, enrollment, bookings (M3–M7).", "Tanay", "P"],
   ["≈27 Nov", "Winter deposits moved in.", "You, Tanay", "P"],
   ["≈28 Nov", "Checkpoint MS2: you try it end to end.", "You", "P"],
   ["≈1 Dec", "Winter selling opens on the new system. December is the test month.", "You", "D"],
   ["by 12 Dec", "Comp-end sequence ready; Q8 answered.", "Tanay, You", "P"],
   ["16–19 Dec", "Autumn cohort closes; last free Saturday 19 Dec; membership offer.", "System", "D"],
+  ["by 31 Dec", "Weekly talk-through done, or close to it.", "You", "D"],
   ["Dec – 15 Jan", "Part B: 108 Minutes, 1:1, website switch, Thursday template, testimonials, assistant.", "Tanay", "P"],
   ["≈15 Jan", "Winter cohort starts. All systems on (MS4).", "", "T22"],
   ["End Jan – mid Feb", "Library and Wednesday email (MS5).", "Tanay", "T22"],
@@ -730,23 +750,23 @@ scope: {
   out: [
     "Bookkeeping, accounting and tax.",
     "Legal review of the waiver, terms or 1:1 agreement. I carry over your wording; a lawyer (or you) approves it.",
-    "Brand design and marketing copy (Leona and Nick). I build what they give me.",
+    "Brand design and marketing copy (Leona and Nick). I build what they give me, and join Leona's writers' room on the emails.",
     "Writing the essay, social posts, and setting up Insight Timer, YouTube or Substack.",
     "Merging or migrating your five email accounts (a separate small job if you want it).",
     "Reorganising Google Drive and Apple Photos.",
     "Any connection to Signal, and any SMS.",
-    "Ashley's work on your calendar and personal assistant, unless Q10 folds it in.",
-    "Embodiment Lab beyond a tag.",
-    "Paid ads.",
-    "Going back through two years of text messages.",
+    "A personal assistant or chief-of-staff AI across your personal and business life (deferred on 2 Nov). A personal VA.",
+    "Embodiment Lab beyond a tag (a mirror of Lisa's sales page on your domain is outside this build).",
+    "Running paid ads. You asked me to have a say in the Meta ads, which I will, alongside Leona.",
+    "Going back through two years of text messages. The assistant only sees messages you pass to it.",
     "Stage 4: training beyond a walkthrough of each piece, and ongoing refinement (priced separately, as the stage plan says)."
   ],
-  since: "New since our call on 2 Nov, not yet priced: the scholarship fund with a donate button on the website (you want it in the build; see Q11), keeping your two Google calendars in step, and curating your library with AI (your \"stage five\", which you want me to own). I'll tell you which fit inside the price before I build them.",
+  since: "New since our call on 2 Nov, not yet priced: the scholarship fund with a donate button on the website (you want it in the build; see Q11), keeping your two Google calendars in step (Q13), and curating your library with AI (your \"stage five\", which you want me to own). I'll tell you which fit inside the price before I build them.",
   change: "If something comes up that isn't in this blueprint, I write it down, tell you whether it fits inside the price, and you decide before I build it. Nothing grows quietly (your ask, 28 Sep)."
 },
 
 price: {
-  note: "On 27 Sep I estimated the whole project at about $7.5–8k including system costs, and on 15 Oct said it now looks likely to come in under that. The fixed figure below covers this blueprint, its revisions and the build. It's fixed before any building starts.",
+  note: "On 2 Nov you chose to take the blueprint and the build together, with half paid up front; I'll send that invoice. On 27 Sep I estimated the whole project at about $7.5–8k including system costs, and on 15 Oct said it now looks likely to come in under that. The fixed figure below covers this blueprint, its revisions and the build. It's fixed before any building starts.",
   fixed: "[To fill in: fixed build price]",
   system: [
     ["GoHighLevel", "Monthly plan (exact plan and price confirmed before you're billed)"],
@@ -776,6 +796,7 @@ risks: [
   ["European cards on your Stripe account", "Test with a European card", "M0, M8"],
   ["Zoom attendance reports depend on your Zoom plan", "Check plan; fallback is Robert ticking a 2-minute list", "M8"],
   ["Email deliverability from a new sending domain", "Warm up with team and members first; check authentication", "M0"],
+  ["Each man's story arrives through December", "Alumni first, so the men most likely to be on the Monday list are done earliest", "M2, M4"],
   ["You're resting in November", "Inputs asked for in small, dated pieces; checkpoints kept short", "All"],
   ["Ryan and Robert are volunteers with a few hours a week", "Their asks kept to the inputs list and one walkthrough each", "M2, M6, M8"],
   ["The server-side pieces depend on me", "Written up so any developer can run them; can move to your own server", "M3, M4, M8"],
@@ -788,11 +809,12 @@ internal: [
   "Read Ashley's drafts before this goes to Speed. Anything that contradicts a module goes into Your decisions, not silently into the spec.",
   "Before sending: remove the hours column if you'd rather not show effort to Speed.",
   "Security: Ryan's voice-note transcript in the Project contains a plain-text password. Ask Ryan to change it and delete the passage.",
-  "Spin up a GoHighLevel trial sub-account this week to clear the V items in M0 and M5 before promising them.",
+  "The real GoHighLevel account exists (2 Nov). Clear the V items in M0 and M5 there, with a $1 test product, before promising them. Fill in the business details.",
   "The iPhone assumption (M3) is inferred from iMessage. Confirm with Speed.",
-  "Speed's personal Gmail address appears in the Stage 1 doc; keep this blueprint free of it.",
+  "Speed's personal Gmail address appears in the Stage 1 doc; keep this blueprint free of it. Its spelling differs between my notes (X15); confirm before the calendar sync.",
   "2 Nov: Speed may ask Maya (Jeremiah) to review this blueprint. The Ryan and Robert review of the Stage 1 report is now uncertain.",
   "2 Nov: send Speed all call transcripts (now in the brain map's Transcripts tab) and the half-up-front invoice for Stages 2 and 3.",
+  "Price the new scope (scholarship fund and button, calendar sync, library curation) before 5 Nov, per change control. Kate: check whether she is Kate Joiner. Ask Robert about attendance (Speed's suggestion).",
   "Personal context for records: Speed narrates about 20 men a week to the assistant, the 72 alumni first, through end of December. The M4 call list in December will be thinner until then."
 ]
 };
