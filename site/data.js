@@ -47,7 +47,7 @@ onePage: {
   pillars: [
     { t: "One record per man", d: "Where he came from, who introduced him, what he's done, what he's paid, what you gave him. Everything else reads from it.", s: "D" },
     { t: "Selling without holding it in your head", d: "Introductions saved the moment they arrive. Five men to call each Monday. Holds, terms and payments tracked and reminded for you.", s: "P" },
-    { t: "Held from the moment he says yes", d: "Welcome, waiver, calendar, Signal invite and his 1:1 booking go out as soon as he enrolls. Ryan sees who's done what.", s: "T22" },
+    { t: "Held from the moment he says yes", d: "Welcome, waiver, calendar, Signal invite and his 1:1 booking go out as soon as he enrolls. Ryan sees who's done what.", s: "D" },
     { t: "108 Minutes runs itself week to week", d: "Friday link and Sunday recording go to the right men. Attendance known. New men noticed. Comps end on time.", s: "P" },
     { t: "You talk to it", d: "An assistant on top that answers, finds and acts, by voice. You never open the CRM.", s: "D" }
   ],
