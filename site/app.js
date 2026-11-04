@@ -23,6 +23,7 @@ const MAP=window.WD_MAP;
 if(MAP){
   const menu=$("#mapmenu"),mb=$("#menuBtn");
   menu.innerHTML=MAP.groups.map(g=>`<div class="mgroup${g.items.length>4?" big":""}"><span class="mhead">${esc(g.h)}</span>${g.items.map(x=>`<a href="${esc(x.href)}"${x.sec?` data-t="${esc(x.sec)}"`:""}>${x.n?`<span class="num" aria-hidden="true">${x.n}</span>`:""}${x.color?`<span class="dot" style="background:var(--${x.color})"></span>`:""}${esc(x.l)}</a>`).join("")}</div>`).join("")+(MAP.later||"");
+  menu.insertAdjacentHTML("afterbegin",`<a class="mhome" href="${esc(MAP.home)}">Home · choose a stage</a>`);
   menu.addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false);});
   const setMenu=open=>{menu.hidden=!open;mb.setAttribute("aria-expanded",String(open));if(open){const a=menu.querySelector("a.on")||menu.querySelector("a");if(a)a.focus({preventScroll:true});}};
   mb.hidden=false;mb.addEventListener("click",e=>{e.stopPropagation();setMenu(menu.hidden);});
