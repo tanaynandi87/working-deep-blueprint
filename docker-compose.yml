@@ -1,0 +1,9 @@
+services:
+  blueprint:
+    build: .
+    container_name: working-deep-blueprint
+    ports:
+      - "8108:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+    restart: unless-stopped
