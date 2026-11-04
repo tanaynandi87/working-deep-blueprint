@@ -11,11 +11,11 @@ const aud=to=>to==="You"?"you":(to==="Ryan"||to==="Robert")?"team":"men";
 const flowsFor=id=>V.flows.filter(f=>f.piece.split(/\s*\/\s*/).includes(id));
 
 $("#t").textContent=B.meta.title;
-$("#sub").textContent=`${B.meta.version} · ${B.meta.date} · ${B.meta.sub}`;
+$("#sub").textContent=`The blueprint · ${B.meta.version} · ${B.meta.date}`;
 $("#foot").textContent=B.meta.basis;
 
 const tabs=[["plan","The plan"],["how","How it works"],["workflows","Workflows"],["pieces","The pieces"],["design","System design"],["moving","Moving in"],["tests","Tests"],["timeline","Timeline"],["scope","Scope & price"],["decisions","Your decisions"],["internal","For Tanay"]];
-$("#nav").innerHTML=tabs.map(([id,l])=>`<a href="#${id}" data-t="${id}" class="${id==='internal'?'int':''}">${l}</a>`).join("");
+$("#nav").innerHTML=tabs.map(([id,l],i)=>`<a href="#${id}" data-t="${id}" class="${id==='internal'?'int':''}"><span class="num" aria-hidden="true">${i+1}</span>${l}</a>`).join("");
 const keyHtml=`<div class="key">${Object.keys(B.statusKey).map(k=>`<span>${chip(k)} ${esc(B.statusKey[k][1])}</span>`).join("")}</div>`;
 const S={};
 
@@ -285,6 +285,12 @@ function show(){
 }
 window.addEventListener("hashchange",show);show();
 
-const root=document.documentElement;let th=null;try{th=localStorage.getItem("wd-theme")}catch(e){}if(th==="light"||th==="dark")root.dataset.theme=th;
-$("#theme").addEventListener("click",()=>{const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;root.dataset.theme=dark?"light":"dark";try{localStorage.setItem("wd-theme",root.dataset.theme)}catch(e){}});
+const root=document.documentElement;
+const SUN='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
+const MOON='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>';
+/* Same rule as the map: follow the device unless a choice is saved (the head script applies a saved one). */
+const isDark=()=>root.dataset.theme?root.dataset.theme==="dark":!matchMedia("(prefers-color-scheme: light)").matches;
+const paintTheme=()=>{const d=isDark(),b=$("#theme");b.innerHTML=d?SUN:MOON;b.setAttribute("aria-label",d?"Switch to light appearance":"Switch to dark appearance");b.title=b.getAttribute("aria-label")};
+paintTheme();matchMedia("(prefers-color-scheme: light)").addEventListener("change",paintTheme);
+$("#theme").addEventListener("click",()=>{root.dataset.theme=isDark()?"light":"dark";try{localStorage.setItem("wd-theme",root.dataset.theme)}catch(e){}paintTheme()});
 })();
