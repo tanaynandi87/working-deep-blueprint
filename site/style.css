@@ -385,3 +385,24 @@ details.spec .inner{padding:0 12px 10px}
 
 /* Home link at the top of the menu */
 .tabs.menu-panel a.mhome{grid-column:1 / -1;font-weight:600;border:1px solid var(--line);margin-bottom:4px}
+
+/* How to use the blueprint: a side sheet like the map's (a bottom sheet on phones) */
+.bscrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:45;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.bscrim.on{opacity:1;pointer-events:auto}
+.bsheet{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(460px,100vw);background:var(--card);border-left:1px solid var(--line2);box-shadow:0 20px 60px rgba(0,0,0,.35);transform:translateX(105%);transition:transform .4s cubic-bezier(.32,.72,0,1);z-index:50;overflow-y:auto;padding:28px 24px;overscroll-behavior:contain;visibility:hidden}
+.bsheet.open{transform:none;visibility:visible}
+.bsheet-x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:var(--card2);border:1px solid var(--line);color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0}
+.bsheet-x svg{width:14px;height:14px}
+.bsheet h2{margin:6px 0 16px;padding-right:44px;font-size:26px}
+.bgrab{display:none}
+.bhow{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:10px;counter-reset:bh}
+.bhow li{counter-increment:bh;display:flex;flex-direction:column;gap:4px;padding:13px 14px;border-radius:14px;background:var(--bg);border:1px solid var(--line);font-size:14px;color:var(--ink2)}
+.bhow li::before{content:counter(bh);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--indigo);color:var(--bg);font-size:12px;font-weight:700;margin-bottom:2px}
+.bhow li b{color:var(--ink);font-size:15px}
+.bh{font-size:17px;margin:18px 0 8px}
+.bmarks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.bmarks li{display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:center;font-size:14px;color:var(--ink2)}
+.help-auto{display:flex;gap:9px;align-items:flex-start;margin:18px 0 6px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:13.5px;color:var(--ink2);cursor:pointer}
+.help-auto input{margin-top:2px;accent-color:var(--ink)}
+@media (max-width:720px){.bsheet{top:auto;bottom:0;width:100%;height:auto;max-height:88dvh;border-left:0;border-top:1px solid var(--line2);border-radius:22px 22px 0 0;transform:translateY(105%);padding:14px 20px max(24px,env(safe-area-inset-bottom))}.bgrab{display:block;width:36px;height:5px;border-radius:3px;background:var(--line2);margin:0 auto 12px}.bmarks li{grid-template-columns:110px 1fr}}
+@media print{.bsheet,.bscrim{display:none!important}}

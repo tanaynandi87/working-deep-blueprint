@@ -31,7 +31,7 @@ if(MAP){
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!menu.hidden){setMenu(false);mb.focus();}});
   const br=$("#brand");br.href=MAP.home;br.setAttribute("aria-label","Working Deep home");br.removeAttribute("title");
   br.querySelector(".brand-text").innerHTML=`<b>${esc(MAP.brand[0])}</b><i id="here">Stage 2 · The blueprint</i>`;
-  $("#nav").hidden=true;$("#sections").innerHTML=secHtml;$("#sections").hidden=false;$("#help").hidden=false;
+  $("#nav").hidden=true;$("#sections").innerHTML=secHtml;$("#sections").hidden=false;
   document.querySelector(".top").classList.add("has-map");
 }else $("#nav").innerHTML=secHtml;
 /* Sticky offsets follow the real heights of the pinned header (and, inside the map, the section row under it). */
@@ -277,6 +277,35 @@ function show(){
 /* Like the map: on narrow screens, scroll each tab row so the current tab is in view. */
 function centerOn(){document.querySelectorAll("#nav,#sections").forEach(n=>{const a=n.querySelector("a.on");if(a&&n.scrollWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-(n.clientWidth-a.offsetWidth)/2;});}
 window.addEventListener("hashchange",show);show();
+
+/* ================================================================ HOW TO USE THE BLUEPRINT (added 5 Nov) */
+/* The ? button opens it any time. It also opens by itself 3 seconds after you choose the Stage 2 card on Home,
+   unless you've ticked "don't open this by itself". */
+const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}},lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+function helpHtml(){
+  const marks=Object.keys(B.statusKey).map(k=>`<li><span class="hk">${chip(k)}</span><span>${esc(B.statusKey[k][1])}</span></li>`).join("");
+  return `<div class="eyebrow">Help · Stage 2<span class="bar"></span></div><h2 id="bsheetTitle">How to use the blueprint</h2>
+  <ol class="bhow">
+    <li><b>Find your way</b><span>The row under the header holds the blueprint's sections, numbered in reading order. ${MAP?"The Menu at the top left holds every page of every stage, and the Working Deep logo takes you back to Home.":""}</span></li>
+    <li><b>Start with The plan</b><span>The whole build on one page: the steps, their dates and your short check-ins. Then open The pieces.</span></li>
+    <li><b>Open a piece</b><span>Each of the 17 pieces answers the same seven questions in plain words: what it is, what it solves, when it comes, what changes for you, what I need from you, how we'll know it works, and what's not included. The technical detail sits behind a button you can skip.</span></li>
+    <li><b>See what's waiting on you</b><span>A piece marked "Waiting on you" says, at the top, exactly what I need you to tell me. On The pieces, the "Waiting on you" button shows just those. What I need and by when is also on the Timeline.</span></li>
+    <li><b>Follow a workflow</b><span>Workflows draws everything the system does on its own, step by step. Pick one on the left; each starts with what sets it off and says who every email goes to.</span></li>
+    <li><b>Answer however suits you</b><span>A voice note is always fine. Nothing here is approved until you say so.</span></li>
+  </ol>
+  <h3 class="bh">What the marks mean</h3><ul class="bmarks">${marks}</ul>
+  <label class="help-auto"><input type="checkbox" id="helpOff" ${lsGet("wd-help-off-2")==="1"?"checked":""}> Don't open this by itself when I choose this stage</label>`;
+}
+const sheet=$("#bsheet"),bscrim=$("#bscrim");let sheetFocus=null;
+function openHelp(){sheetFocus=document.activeElement;$("#bsheetBody").innerHTML=helpHtml();sheet.scrollTop=0;sheet.classList.add("open");sheet.setAttribute("aria-hidden","false");bscrim.classList.add("on");setTimeout(()=>$("#bsheetX").focus({preventScroll:true}),60);}
+function closeHelp(){if(!sheet.classList.contains("open"))return;sheet.classList.remove("open");sheet.setAttribute("aria-hidden","true");bscrim.classList.remove("on");if(sheetFocus&&document.contains(sheetFocus))sheetFocus.focus({preventScroll:true});}
+$("#help").addEventListener("click",openHelp);$("#bsheetX").addEventListener("click",closeHelp);bscrim.addEventListener("click",closeHelp);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeHelp();});
+document.addEventListener("change",e=>{if(e.target.id==="helpOff")lsSet("wd-help-off-2",e.target.checked?"1":"0");});
+(()=>{let n=null;try{n=sessionStorage.getItem("wd-help-next")}catch(e){}
+  if(n!=="2")return;try{sessionStorage.removeItem("wd-help-next")}catch(e){}
+  if(lsGet("wd-help-off-2")==="1")return;
+  setTimeout(()=>{if(!sheet.classList.contains("open"))openHelp()},3000);})();
 
 const root=document.documentElement;
 const SUN='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
