@@ -19,13 +19,16 @@
 </head>
 <body>
 <header class="top">
+  <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mapmenu" aria-label="All pages" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Menu</span></button>
   <a class="brand" id="brand" href="#plan" aria-label="The blueprint: back to the plan">
     <span class="brand-mark" aria-hidden="true"></span>
     <span class="brand-text"><b>Working Deep</b><i>The blueprint · Stage 2</i></span>
   </a>
   <nav class="tabs" id="nav" aria-label="Sections"></nav>
+  <span class="top-fill"></span>
   <a class="theme-btn help-btn" id="help" href="../#help" aria-label="Help: how to use the map" title="How to use the map" hidden>?</a>
   <button class="theme-btn" id="theme" type="button" aria-label="Switch light or dark"></button>
+  <nav class="tabs menu-panel" id="mapmenu" aria-label="All pages" hidden></nav>
 </header>
 <nav class="pagetabs" id="sections" aria-label="Blueprint sections" hidden></nav>
 <div class="hero wrap"><div class="eyebrow"><span id="sub"></span><span class="bar"></span></div><span id="t" class="sr-only"></span></div>

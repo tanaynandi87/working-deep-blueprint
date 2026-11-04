@@ -78,9 +78,11 @@ button{font:inherit;color:inherit}
 .tab-sep{align-self:center;font:700 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 4px 0 12px;white-space:nowrap;border-left:1px solid var(--line);margin-left:6px}
 .tabs a .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;cursor:auto}
 .help-btn{font-weight:700;font-size:17px;font-family:var(--sans);text-decoration:none}
-/* On the blueprint the map's header scrolls away and the blueprint's own sections stay pinned, so the pinned bar stays short. */
-.top.has-sections{position:relative}
-.pagetabs{position:sticky;top:0;z-index:29;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:7px max(24px,env(safe-area-inset-right,0px)) 7px max(24px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+/* Inside the map: the one-row header and the blueprint's sections, both pinned. */
+.top-fill{flex:0}
+.top.has-map .top-fill{flex:1}
+.tabs[hidden]{display:none}
+.pagetabs{position:sticky;top:var(--hdrh,60px);z-index:29;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:7px max(24px,env(safe-area-inset-right,0px)) 7px max(24px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
 @media (max-width:720px){.pagetabs{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
 @media (min-width:1200px){.pagetabs{padding-left:18px;padding-right:18px}}
 .pagetabs::-webkit-scrollbar{display:none}
@@ -354,3 +356,29 @@ pre.out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);b
   .brand,.theme-btn{margin-top:1px}
 }
 @media (min-width:1200px) and (max-width:1439px){ .brand-text i{display:none} }
+
+/* ---------- header: one row, every page in the ☰ menu (4 Nov) ---------- */
+.top{align-items:center}
+.menu-btn{display:inline-flex;align-items:center;gap:8px;min-height:var(--tap);padding:0 15px 0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14px var(--sans);cursor:pointer;flex-shrink:0}
+.menu-btn svg{width:18px;height:18px;flex-shrink:0}
+.menu-btn:hover,.menu-btn[aria-expanded="true"]{background:var(--card2);border-color:var(--line2)}
+.brand-text i{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
+.tabs.menu-panel{position:absolute;top:calc(100% + 6px);left:max(16px,env(safe-area-inset-left,0px));width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 96px);overflow:auto;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:4px 18px;padding:14px;flex:none;flex-wrap:nowrap;
+  background:color-mix(in srgb,var(--bg) 92%,var(--card));border:1px solid var(--line2);border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.28);
+  -webkit-mask-image:none;mask-image:none;z-index:40}
+.tabs.menu-panel[hidden]{display:none}
+.mgroup{display:flex;flex-direction:column;gap:2px;align-content:start;min-width:0}
+.mgroup.big{grid-column:2;grid-row:1 / span 3;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px 6px}
+.mgroup.big .mhead{grid-column:1 / -1}
+.mhead{font:700 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 10px 6px}
+.tabs.menu-panel a{display:flex;align-items:center;min-height:40px;padding:0 10px;border-radius:12px;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs.menu-panel a .num{margin-right:9px}
+@media (min-width:1200px){ .top{align-items:center} .brand,.theme-btn{margin-top:0} .brand-text i{display:block} }
+@media (max-width:720px){
+  .top.has-map .brand-text{display:flex} .brand-text b{font-size:16px}
+  .menu-btn span{display:none} .menu-btn{width:var(--tap);padding:0;justify-content:center}
+  .tabs.menu-panel{left:10px;right:10px;width:auto;grid-template-columns:minmax(0,1fr);padding:10px}
+  .mgroup.big{grid-column:auto;grid-row:auto}
+}
+@media print{ .menu-btn,.menu-panel{display:none!important} }

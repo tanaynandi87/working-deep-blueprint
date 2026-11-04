@@ -16,21 +16,27 @@ $("#foot").textContent=B.meta.basis;
 
 const tabs=[["plan","The plan"],["how","How it works"],["workflows","Workflows"],["pieces","The pieces"],["design","System design"],["moving","Moving in"],["tests","Tests"],["timeline","Timeline"],["scope","Scope & price"],["decisions","Your decisions"],["internal","For Tanay"]];
 const secHtml=tabs.map(([id,l],i)=>`<a href="#${id}" data-t="${id}" class="${id==='internal'?'int':''}"><span class="num" aria-hidden="true">${i+1}</span>${l}</a>`).join("");
-/* Inside the brain map, sync-blueprint.js adds window.WD_MAP: the map's own tabs and brand, so both pages share one header.
-   The map's tabs go on the first row (with "The blueprint" lit) and the blueprint's sections on a row beneath. On its own,
-   the blueprint keeps its sections in the main row. */
+/* Inside the brain map, sync-blueprint.js adds window.WD_MAP: the map's pages and brand, so both share one header.
+   The header is one row (☰ menu, brand, ? and light/dark), and the blueprint's sections sit on a pinned row beneath it.
+   On its own, the blueprint keeps its sections in the header row. */
 const MAP=window.WD_MAP;
 if(MAP){
-  $("#nav").setAttribute("aria-label","How Working Deep Works");
-  $("#nav").innerHTML=MAP.routes.map((r,i)=>`${r.group?`<span class="tab-sep" aria-hidden="true">${esc(r.group)}</span>`:""}<a href="${esc(r.href)}" class="${r.here?"on":""}"${r.here?' aria-current="page"':""}><span class="num" aria-hidden="true">${i+1}</span>${r.color?`<span class="dot" style="background:var(--${r.color})"></span>`:""}${esc(r.l)}</a>`).join("");
+  const groups=[];
+  MAP.routes.forEach((r,i)=>{if(r.group||!groups.length)groups.push({h:r.group||"Start here",items:[]});groups[groups.length-1].items.push([r,i]);});
+  const menu=$("#mapmenu"),mb=$("#menuBtn");
+  menu.innerHTML=groups.map(g=>`<div class="mgroup${g.items.length>4?" big":""}"><span class="mhead">${esc(g.h)}</span>${g.items.map(([r,i])=>`<a href="${esc(r.href)}" class="${r.here?"on":""}"${r.here?' aria-current="page"':""}><span class="num" aria-hidden="true">${i+1}</span>${r.color?`<span class="dot" style="background:var(--${r.color})"></span>`:""}${esc(r.l)}</a>`).join("")}</div>`).join("");
+  const setMenu=open=>{menu.hidden=!open;mb.setAttribute("aria-expanded",String(open));if(open){const a=menu.querySelector("a.on")||menu.querySelector("a");if(a)a.focus({preventScroll:true});}};
+  mb.hidden=false;mb.addEventListener("click",e=>{e.stopPropagation();setMenu(menu.hidden);});
+  document.addEventListener("click",e=>{if(!menu.hidden&&!menu.contains(e.target))setMenu(false);});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!menu.hidden){setMenu(false);mb.focus();}});
   const br=$("#brand");br.href=MAP.home;br.setAttribute("aria-label","Working Deep home");br.removeAttribute("title");
-  br.querySelector(".brand-text").innerHTML=`<b>${esc(MAP.brand[0])}</b><i>${esc(MAP.brand[1])}</i>`;
-  $("#sections").innerHTML=secHtml;$("#sections").hidden=false;$("#help").hidden=false;
-  document.querySelector(".top").classList.add("has-sections");
+  br.querySelector(".brand-text").innerHTML=`<b>${esc(MAP.brand[0])}</b><i>The blueprint</i>`;
+  $("#nav").hidden=true;$("#sections").innerHTML=secHtml;$("#sections").hidden=false;$("#help").hidden=false;
+  document.querySelector(".top").classList.add("has-map");
 }else $("#nav").innerHTML=secHtml;
-/* Sticky offsets follow the header's real height, which changes as its rows wrap. */
-const topBar=MAP?$("#sections"):document.querySelector(".top"),setTopH=()=>document.documentElement.style.setProperty("--toph",topBar.offsetHeight+"px");
-setTopH();if(window.ResizeObserver)new ResizeObserver(setTopH).observe(topBar);
+/* Sticky offsets follow the real heights of the pinned header (and, inside the map, the section row under it). */
+const topBar=document.querySelector(".top"),secBar=$("#sections"),setTopH=()=>{const h=topBar.offsetHeight,r=document.documentElement.style;r.setProperty("--hdrh",h+"px");r.setProperty("--toph",(h+(MAP?secBar.offsetHeight:0))+"px");};
+setTopH();if(window.ResizeObserver){const ro=new ResizeObserver(setTopH);ro.observe(topBar);ro.observe(secBar);}
 const keyHtml=`<div class="key">${Object.keys(B.statusKey).map(k=>`<span>${chip(k)} ${esc(B.statusKey[k][1])}</span>`).join("")}</div>`;
 const S={};
 
