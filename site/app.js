@@ -229,7 +229,9 @@ S.scope=`<h2>Scope and price</h2><p class="lead">${esc(sc.inScope)}</p>
 <h3>Not included</h3><div class="card"><ul class="items">${sc.out.map(o=>`<li><span>•</span><div>${esc(o)}</div></li>`).join("")}</ul></div>
 ${sc.since?`<div class="callout"><strong>New since 2 Nov.</strong> ${esc(sc.since)}</div>`:""}<div class="callout"><strong>If something new comes up.</strong> ${esc(sc.change)}</div>
 <h3>Policies the build depends on</h3><div class="card">${table(["Policy","Owner","Where it's used",""],B.policies.map(p=>[`<strong>${esc(p[0])}</strong>`,esc(p[1]),esc(p[2]),chip(p[3])]))}</div>
-<h3>Price</h3><div class="card"><p style="margin-top:0">${esc(pr.note)}</p><p style="font:500 22px var(--serif)">${esc(pr.fixed)}</p>${table(["Running cost","Detail"],pr.system.map(r=>[`<strong>${esc(r[0])}</strong>`,esc(r[1])]))}</div>
+<h3>Price</h3><div class="card"><p style="margin-top:0">${esc(pr.note)}</p>${table(["Stage","What it covers","Price"],pr.stages.map(r=>[`<strong>${esc(r[0])}</strong>`,esc(r[1]),`<strong>${esc(r[2])}</strong>`]).concat([[`<strong>In all</strong>`,"",`<strong>${esc(pr.total)}</strong>`]]))}</div>
+<h3>When you pay</h3><div class="card">${table(["When","For","Amount"],pr.payments.map(r=>[`<strong>${esc(r[0])}</strong>`,esc(r[1]),esc(r[2])]))}</div>
+<h3>Running costs</h3><div class="card">${table(["Running cost","Detail"],pr.system.map(r=>[`<strong>${esc(r[0])}</strong>`,esc(r[1])]))}</div>
 <h3>Risks I'm watching</h3><div class="card">${table(["Risk","What I'll do","Pieces"],B.risks.map(r=>r.map(esc)))}</div>`;
 
 /* ================================================================ INTERNAL */

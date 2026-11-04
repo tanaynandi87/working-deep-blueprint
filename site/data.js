@@ -95,7 +95,7 @@ modules: [
   },
   spec: [
     ["Account", "Created on 2 Nov with you as admin (speed@workingdeep.com). Still to fill in: time zone America/New_York, currency USD, and the business profile with the S corporation name for invoices.", "D"],
-    ["Plan", "GoHighLevel plan that includes workflows, payments, memberships/courses and websites. Current pricing to be confirmed before you're billed.", "V"],
+    ["Plan", "A GoHighLevel sub-account, already set up: $150 a year. The first year is included in the Stage 3 price; you pay it from the second year.", "P"],
     ["SMS", "No phone number bought. SMS and WhatsApp channels left off. Every workflow uses email only.", "D"],
     ["Email sending", "A dedicated sending subdomain (e.g. mail.workingdeep.com) with SPF, DKIM and DMARC records. From name \"Speed\" for your voice; \"Working Deep\" for logistics. Replies to logistics emails go to assistant@workingdeep.com, never to your private inboxes.", "P"],
     ["Assistant inbox", "assistant@workingdeep.com replaces the assistant Gmail (your yes on 2 Nov). Ryan holds that Gmail today, so we switch over with him and forward the old address for a while.", "D"],
@@ -261,7 +261,7 @@ modules: [
   spec: [
     ["Calendars", "15-minute call; Discovery call (45 min, private link only); 108 Days 1:1 (60 min). See System design › Calendars.", "P"],
     ["Google Calendar", "Connected to the calendar on your personal Google account so busy times are respected and bookings appear there. Only free/busy is read. This is the GoHighLevel connection you agreed on 2 Nov (\"probably\").", "V"],
-    ["Two calendars in step", "New on 2 Nov: invites to speed@ and blocks on either calendar show on the other, so one calendar is the truth. Not yet priced.", "V"],
+    ["Two calendars in step", "New on 2 Nov: invites to speed@ and blocks on either calendar show on the other, so one calendar is the truth. Included in the price.", "V"],
     ["Zoom", "Your personal room link used as the meeting location (so you're never in the wrong meeting), not a new meeting each time.", "P"],
     ["Reminders", "Email only, 24 hours before. No SMS.", "D"],
     ["Retire Calendly", "Once the three booking pages are live and tested.", "D"]
@@ -375,7 +375,7 @@ modules: [
     ["Build", "Hand-written HTML/CSS pages inside GoHighLevel's site builder, kept in a code repository so they can move to any host.", "P"],
     ["Pages", "Home, 108 Minutes (register), 108 Days, Retreats, 1:1 (no prices), About, a few free teachings, 15-minute call, legal pages.", "P"],
     ["Logo", "Your current Working Deep logo stays; Leona isn't redoing it. Mike Reynolds holds every version and you introduced us on 2 Nov.", "D"],
-    ["Scholarship", "A donate button anyone can use, including people who'll never sign up. Still to settle: whether you also ask men at enrollment, a 3% opt-in at checkout, and whether donors can give without their name. Not yet priced.", "D"],
+    ["Scholarship", "A donate button anyone can use, including people who'll never sign up. Still to settle: whether you also ask men at enrollment, a 3% opt-in at checkout, and whether donors can give without their name. Included in the price.", "D"],
     ["SEO", "Titles, descriptions, structured data, sitemap, redirects from every old Squarespace URL.", "P"],
     ["Switch-over", "DNS moved on a quiet weekday; Squarespace kept for 30 days in case.", "P"]
   ],
@@ -465,7 +465,7 @@ modules: [
     ["What it can't see", "Your texts, iMessage and Signal (there's no way in), your private inboxes, and your private notes on a man unless you decide otherwise. You can always share or forward something to it.", "D"],
     ["Who else uses it", "Only you to start. Ryan could have a version later that sees only what his login sees.", "P"],
     ["Where it runs", "The app and its memory notebook on my server, encrypted and written up so any developer could run it or move it to your own. Your records stay in your GoHighLevel account.", "P"],
-    ["Cost", "Pay per use for the AI, small at your volume. I'll give you a monthly estimate before it goes live.", "V"]
+    ["Cost", "Pay per use for the AI, roughly $10 to $30 a month at your volume. I'll confirm the figure once it's live.", "V"],
   ],
   spec: [
     ["Interface", "Installable web app (PWA) with passkey sign-in; push-to-talk speech to text and spoken replies; text fallback; share-sheet and forwarded-email intake shared with M3.", "P"],
@@ -493,7 +493,7 @@ modules: [
   spec: [
     ["Platform", "GoHighLevel memberships/courses, linked from the website, members' login by email.", "T22"],
     ["Access", "Active members and men in a current cohort.", "P"],
-    ["Curation", "I review, cut and tag your material with AI help: Nick's clips, practices, and your teaching from the 108 Days recordings in Zoom (\"I teach well on 108 days\"). Not yet priced (your \"stage five\").", "D"],
+    ["Curation", "I review, cut and tag your material with AI help: Nick's clips, practices, and your teaching from the 108 Days recordings in Zoom (\"I teach well on 108 days\"). Included in the price (your \"stage five\").", "D"],
     ["Men's voices", "108 Days calls include men's shares, so only your teaching segments go in unless the men agree.", "P"],
     ["Wednesday", "Each week one teaching and one practice from the library.", "P"]
   ],
@@ -763,20 +763,30 @@ scope: {
     "Embodiment Lab beyond a tag (a mirror of Lisa's sales page on your domain is outside this build).",
     "Running paid ads. You asked me to have a say in the Meta ads, which I will, alongside Leona.",
     "Going back through two years of text messages. The assistant only sees messages you pass to it.",
-    "Stage 4: training beyond a walkthrough of each piece, and ongoing refinement (priced separately, as the stage plan says)."
+    "Stage 4, training and handover, is priced separately ($500, below). Ongoing refinement after handover isn't included."
   ],
-  since: "New since our call on 2 Nov, not yet priced: the scholarship fund with a donate button on the website (you want it in the build), keeping your two Google calendars in step, and curating your library with AI (your \"stage five\", which you want me to own). I'll tell you which fit inside the price before I build them.",
+  since: "New since our call on 2 Nov, and included in the Stage 3 price: the scholarship fund with a donate button on the website (you want it in the build), keeping your two Google calendars in step, and curating your library with AI (your \"stage five\", which you want me to own). I'll tell you which fit inside the price before I build them.",
   change: "If something comes up that isn't in this blueprint, I write it down, tell you whether it fits inside the price, and you decide before I build it. Nothing grows quietly (your ask, 28 Sep)."
 },
 
 price: {
-  note: "On 2 Nov you chose to take the blueprint and the build together, with half paid up front; I'll send that invoice. On 27 Sep I estimated the whole project at about $7.5–8k including system costs, and on 15 Oct said it now looks likely to come in under that. The fixed figure below covers this blueprint, its revisions and the build. It's fixed before any building starts.",
-  fixed: "[To fill in: fixed build price]",
+  note: "A fixed price for each stage. Nothing grows quietly: anything new goes through the change rule above before I build it.",
+  stages: [
+    ["Stage 2 · Blueprint", "This blueprint and its revisions", "$400"],
+    ["Stage 3 · Build", "Everything in the 17 pieces, including what you added on 2 Nov (the scholarship fund and donate button, keeping your two calendars in step, and curating your library), tested and written up. Includes GoHighLevel for the first year", "$4,000"],
+    ["Stage 4 · Training and handover", "You and the team trained on the system, and handover notes good enough for anyone to look after it", "$500"]
+  ],
+  total: "$4,900",
+  payments: [
+    ["Now", "Half of Stages 2 and 3 together, as you asked on 2 Nov", "$2,200"],
+    ["When Part B is live (≈15 Jan)", "The other half of Stages 2 and 3", "$2,200"],
+    ["At the end of Stage 4", "Training and handover", "$500"]
+  ],
   system: [
-    ["GoHighLevel", "Monthly plan (exact plan and price confirmed before you're billed)"],
+    ["GoHighLevel", "$150 a year. The first year is paid by me and included in the Stage 3 price; you pay it from the second year (from Nov 2027)"],
     ["Stripe", "≈2.9% + 30¢ per card payment in the US, absorbed by you (check current rates)"],
-    ["Email sending", "Small per-email cost at your volume"],
-    ["AI usage", "Pay per use; small at your volume"],
+    ["Email sending", "About $0.68 per 1,000 emails sent through GoHighLevel, a few dollars a month at your volume (I'll confirm the current rate)"],
+    ["AI usage", "Pay per use for your assistant and for reading introductions, roughly $10 to $30 a month at your volume. I'll confirm once it's live"],
     ["Squarespace, Calendly, JotForm, Typeform, systeme.io", "Cancelled as each is replaced (savings)"]
   ]
 },
@@ -810,7 +820,7 @@ risks: [
 
 /* ------------------------------------------------- INTERNAL (TANAY) */
 internal: [
-  "Set the fixed price. Effort estimate below totals the module hours; add testing and handover.",
+  "Prices set 5 Nov: Stage 2 $400, Stage 3 $4,000 (includes the 2 Nov additions and GoHighLevel for year one), Stage 4 $500. Invoice $2,200 now (half of Stages 2 and 3, Speed's ask on 2 Nov at 01:16:44).",
   "Read Ashley's drafts before this goes to Speed. Anything that contradicts a module goes into that module's \"Waiting on\" line, not silently into the spec.",
   "Before sending: remove the hours column if you'd rather not show effort to Speed.",
   "Security: Ryan's voice-note transcript in the Project contains a plain-text password. Ask Ryan to change it and delete the passage.",
@@ -821,7 +831,7 @@ internal: [
   "2 Nov: send Speed all call transcripts (now in the brain map's Transcripts tab) and the half-up-front invoice for Stages 2 and 3.",
   "M14 is now spelled out from the transcripts (15 abilities, how it works, later list); hours raised from 24 to 32. Check before pricing.",
   "Your decisions tab removed (4 Nov). Every open question now sits in its piece's Waiting on or need line; the inputs list moved to Timeline.",
-  "Price the new scope (scholarship fund and button, calendar sync, library curation) before 5 Nov, per change control. Kate: check whether she is Kate Joiner. Ask Robert about attendance (Speed's suggestion).",
+  "Kate: check whether she is Kate Joiner. Ask Robert about attendance (Speed's suggestion).",
   "Personal context for records: Speed narrates about 20 men a week to the assistant, the 72 alumni first, through end of December. The M4 call list in December will be thinner until then."
 ]
 };
