@@ -8,7 +8,7 @@ deps: {
   M0: [], M1: ["M0"], M7: ["M0"], M2: ["M1"], M3: ["M1"], M5: ["M0","M1"],
   M4: ["M1","M2","M3"], M6: ["M1","M5","M7"], M9a: ["M1","M5"],
   M8: ["M1","M2","M5"], M10: ["M1","M5","M7"], M11: ["M0","M7"], M12: ["M1"],
-  M9b: ["M1","M9a"], M13: ["M1","M12"], M14: ["M1","M2","M3","M7","M12"], M15: ["M8","M11","M12"]
+  M9b: ["M1","M9a"], M13: ["M1","M12"], M14: ["M1","M2","M3","M7"], M16: ["M0","M1","M11"], M15: ["M8","M11","M12"]
 },
 
 /* ---------- Workflows as flowcharts ---------- */
@@ -41,6 +41,19 @@ flows: [
     ]},
     { t: "person", to: "You", x: "Make your calls. Say a sentence about each to the phone button" },
     { t: "end", x: "Last spoke and his stage are updated" }
+  ]
+},
+{
+  id: "WF-23", name: "Telling Meta what happened", piece: "M16", part: "A", group: "Selling",
+  plain: "When a man signs up, books, pays or comes to 108 Minutes, Meta hears about it, so ads find more men like him. Nothing private goes.",
+  steps: [
+    { t: "trigger", x: "A man signs up, books a call, enrolls and pays, or comes to 108 Minutes" },
+    { t: "decision", x: "Is it about 1:1 coaching, or has he unsubscribed?", branches: [
+      { label: "Yes", steps: [ { t: "end", x: "Nothing is sent" } ] },
+      { label: "No",  steps: [ { t: "action", x: "His email and phone are scrambled, and the event is sent to Meta with the amount and the ad he came from" } ] }
+    ]},
+    { t: "action", x: "Meta matches it to the ad, counts it once, and learns what a good lead looks like" },
+    { t: "end", x: "Whoever runs the ads sees which ones bring men who enroll and show up" }
   ]
 },
 {
@@ -285,7 +298,7 @@ week: [
 
 /* ---------- Gantt ---------- */
 gantt: {
-  start: "2026-11-02", end: "2027-02-28", today: "2026-11-04",
+  start: "2026-11-02", end: "2027-02-28", today: "2026-11-05",
   bands: [
     { label: "You rest; soft pre-selling", from: "2026-11-02", to: "2026-11-30", kind: "speed" },
     { label: "Winter selling (test month)", from: "2026-12-01", to: "2027-01-14", kind: "sell" },
@@ -296,23 +309,24 @@ gantt: {
     { id: "M0", from: "2026-11-09", to: "2026-11-14", part: "A" },
     { id: "M1", from: "2026-11-12", to: "2026-11-17", part: "A" },
     { id: "M2", from: "2026-11-13", to: "2026-11-20", part: "A" },
-    { id: "M7", from: "2026-11-18", to: "2026-11-21", part: "A" },
+    { id: "M7", from: "2026-11-11", to: "2026-11-15", part: "A" },
+    { id: "M11", from: "2026-11-09", to: "2026-11-15", part: "A" },
+    { id: "M16", from: "2026-11-11", to: "2026-11-15", part: "A" },
     { id: "M3", from: "2026-11-20", to: "2026-11-25", part: "A" },
     { id: "M5", from: "2026-11-19", to: "2026-11-26", part: "A" },
     { id: "M6", from: "2026-11-23", to: "2026-11-28", part: "A" },
     { id: "M4", from: "2026-11-24", to: "2026-11-28", part: "A" },
-    { id: "M9a", from: "2026-11-26", to: "2026-11-28", part: "A" },
-    { id: "M11", from: "2026-11-16", to: "2027-01-12", part: "B" },
+    { id: "M9a", from: "2026-11-12", to: "2026-11-15", part: "A" },
+    { id: "M14", from: "2026-11-16", to: "2026-11-30", part: "A" },
     { id: "M8", from: "2026-12-02", to: "2027-01-10", part: "B" },
     { id: "M12", from: "2026-12-07", to: "2026-12-18", part: "B" },
     { id: "M13", from: "2026-12-14", to: "2027-01-08", part: "B" },
     { id: "M10", from: "2026-12-28", to: "2027-01-08", part: "B" },
     { id: "M9b", from: "2027-01-04", to: "2027-01-12", part: "B" },
-    { id: "M14", from: "2026-12-14", to: "2027-01-15", part: "B" },
     { id: "M15", from: "2027-01-18", to: "2027-02-15", part: "B" }
   ],
   marks: [
-    { d: "2026-11-20", t: "MS1" }, { d: "2026-11-28", t: "MS2" }, { d: "2026-12-01", t: "Selling opens" },
+    { d: "2026-11-15", t: "Site live" }, { d: "2026-11-20", t: "MS1" }, { d: "2026-11-28", t: "MS2" }, { d: "2026-12-01", t: "Selling opens" },
     { d: "2026-12-16", t: "Cohort close" }, { d: "2027-01-15", t: "All on" }
   ]
 }

@@ -4,7 +4,7 @@ const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",
 const chip=s=>B.statusKey[s]?`<span class="chip c-${s}" title="${esc(B.statusKey[s][1])}">${esc(B.statusKey[s][0])}</span>`:"";
 const M=Object.fromEntries(B.modules.map(m=>[m.id,m]));
 const F=Object.fromEntries(V.flows.map(f=>[f.id,f]));
-const SHORT={M0:"Account & access",M1:"One record per man",M2:"Moving in",M3:"Saving introductions",M4:"Monday call list",M5:"Holds, terms, payments",M6:"108 Days enrollment",M7:"Bookings",M9a:"Montana pre-sale",M8:"108 Minutes weekly",M9b:"Retreat intake",M10:"1:1 admin",M11:"Website",M12:"Testimonials",M13:"Thursday email",M14:"Your assistant",M15:"Library"};
+const SHORT={M0:"Account & access",M1:"One record per man",M2:"Moving in",M3:"Saving introductions",M4:"Monday call list",M5:"Holds, terms, payments",M6:"108 Days enrollment",M7:"Bookings",M9a:"Montana pre-sale",M8:"108 Minutes weekly",M9b:"Retreat intake",M10:"1:1 admin",M11:"Website",M12:"Testimonials",M13:"Thursday email",M14:"Your assistant",M15:"Library",M16:"Meta connection"};
 const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const table=(head,rows,mono=[])=>`<div class="tablewrap"><table><thead><tr>${head.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td class="${mono.includes(i)?'mono':''}">${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 const aud=to=>to==="You"?"you":(to==="Ryan"||to==="Robert")?"team":"men";
@@ -170,7 +170,7 @@ ${m.later?`<h4 class="mh">Later, not in this build</h4><ul class="items">${m.lat
 ${fl.length?`<div class="modflows">Workflows in this piece: ${fl.map(f=>`<span class="tag link" data-wf="${f.id}">${f.id} ${esc(f.name)}</span>`).join("")}</div>`:""}
 <details class="spec"><summary>Technical detail (for me, and whoever maintains this)</summary><div class="inner">${table(["Part","Specification",""],m.spec.map(r=>[`<strong>${esc(r[0])}</strong>`,esc(r[1]),chip(r[2])]))}</div></details>
 </div></details>`};
-S.pieces=`<h2>The pieces</h2><p class="lead">Seventeen pieces, built in this order because each one leans on the ones to its left. Hover a piece to see what it depends on; click to open it.</p>
+S.pieces=`<h2>The pieces</h2><p class="lead">${B.modules.length} pieces, built in this order because each one leans on the ones to its left. Hover a piece to see what it depends on; click to open it.</p>
 <div class="card">${dag()}<div class="key" style="margin:10px 0 0"><span><span class="chip" style="background:var(--accent-soft);color:var(--partA)">Part A</span> by ≈1 Dec</span><span><span class="chip" style="background:var(--men-bg);color:var(--partB)">Part B</span> by ≈15 Jan / Feb</span></div></div>
 <div class="filters" id="f"><button data-f="all" class="on">All</button><button data-f="A">Part A · by 1 Dec</button><button data-f="B">Part B · Jan–Feb</button><button data-f="wait">Waiting on you</button><button data-f="expand">Open all</button></div>
 <div id="mods">${B.modules.map(modHtml).join("")}</div>${keyHtml}`;
